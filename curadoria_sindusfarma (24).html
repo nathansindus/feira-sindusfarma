@@ -1,0 +1,1496 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="favicon_sindusfarma.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sindusfarma Brasil — Feira de Negócios 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;background:#0d1b3e;color:#fff;overflow-x:hidden;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;letter-spacing:-0.011em;}
+
+/* Display / headings → Space Grotesk */
+h1,h2,h3,.cd-num,.ind-num,.section-label,.nav-logo-text{font-family:'Space Grotesk','Manrope',sans-serif;}
+.font-display{font-family:'Space Grotesk','Manrope',sans-serif;}
+.tabular{font-variant-numeric:tabular-nums;font-feature-settings:'tnum' 1;}
+
+/* ══ NAV ══ */
+.nav{position:fixed;top:0;left:0;right:0;z-index:900;display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:64px;background:rgba(10,20,40,0.88);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.07);}
+.nav-logo{display:flex;align-items:center;gap:10px;}
+.nav-logo-text{font-size:15px;font-weight:700;color:#fff;line-height:1.2;}
+.nav-logo-text span{color:#00e5c0;}
+.nav-links{display:flex;align-items:center;gap:32px;}
+.nav-links a{font-size:13px;color:#7eb8d4;text-decoration:none;font-weight:600;letter-spacing:0.03em;transition:color 0.15s;}
+.nav-links a{position:relative;}
+.nav-links a::after{content:'';position:absolute;left:0;right:100%;bottom:-6px;height:1.5px;background:#00e5c0;transition:right 0.28s cubic-bezier(0.22,1,0.36,1);}
+.nav-links a:hover{color:#00e5c0;}
+.nav-links a.active{color:#00e5c0;}
+.nav-links a.active::after{right:0;}
+.nav-links a:hover::after{right:0;}
+.nav-cta{background:transparent;border:1.5px solid #00e5c0;color:#00e5c0;padding:8px 18px;border-radius:99px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Manrope',-apple-system,sans-serif;letter-spacing:0.04em;transition:background 0.15s,color 0.15s;}
+.nav-cta:hover{background:#00e5c0;color:#0d1b3e;}
+
+/* ══ COUNTDOWN ══ */
+.countdown-wrap{padding:84px 24px 44px;text-align:center;background:linear-gradient(180deg,#0a1428 0%,#0d1b3e 100%);border-bottom:1px solid #1e3a5f;position:relative;transition:padding 0.4s ease,max-height 0.5s ease;max-height:320px;overflow:hidden;}
+.countdown-wrap::before{content:'';position:absolute;top:-40%;left:50%;transform:translateX(-50%);width:680px;height:420px;background:radial-gradient(ellipse at center,rgba(0,229,192,0.14) 0%,rgba(0,229,192,0) 68%);pointer-events:none;}
+.countdown-wrap.collapsed{padding-top:72px;padding-bottom:16px;max-height:110px;}
+.countdown-wrap.collapsed .countdown-eyebrow,
+.countdown-wrap.collapsed .countdown-title,
+.countdown-wrap.collapsed .countdown-sub,
+.countdown-wrap.collapsed .countdown-blocks{opacity:0;pointer-events:none;transition:opacity 0.2s;}
+.countdown-eyebrow,.countdown-title,.countdown-sub,.countdown-blocks{transition:opacity 0.3s;}
+.cd-toggle{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);background:rgba(255,255,255,0.05);border:1px solid #1e3a5f;color:#7eb8d4;border-radius:99px;padding:4px 16px;font-size:11px;font-weight:600;cursor:pointer;font-family:'Manrope',-apple-system,sans-serif;letter-spacing:0.06em;transition:border-color 0.15s,color 0.15s,background 0.15s;white-space:nowrap;}
+.cd-toggle:hover{border-color:#00e5c0;color:#00e5c0;background:rgba(0,229,192,0.07);}
+.countdown-eyebrow{font-size:11px;font-weight:700;letter-spacing:0.24em;color:#7eb8d4;text-transform:uppercase;margin-bottom:8px;position:relative;}
+.countdown-title{font-size:24px;font-weight:700;color:#fff;margin-bottom:5px;letter-spacing:-0.02em;position:relative;}
+.countdown-sub{font-size:14px;color:#7eb8d4;margin-bottom:22px;letter-spacing:0.02em;position:relative;}
+.countdown-blocks{display:flex;justify-content:center;align-items:center;gap:6px;flex-wrap:wrap;position:relative;}
+.cd-block{background:#0a1428;border:1px solid #1e3a5f;border-radius:12px;padding:12px 20px;min-width:84px;text-align:center;transition:border-color 0.3s,box-shadow 0.3s;}
+.cd-num{font-size:42px;font-weight:700;line-height:1;letter-spacing:-0.03em;font-variant-numeric:tabular-nums;}
+.cd-lbl{font-size:10px;font-weight:600;color:#7eb8d4;text-transform:uppercase;letter-spacing:0.12em;margin-top:4px;}
+.cd-sep{font-size:28px;font-weight:700;color:#1e3a5f;padding:0 2px;align-self:center;margin-bottom:12px;}
+
+/* ══ HERO ══ */
+.hero{position:relative;min-height:90vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#0a1428;padding:120px 32px 80px;}
+.hero-bg{position:absolute;inset:0;z-index:0;background-image:radial-gradient(rgba(0,229,192,0.07) 1px,transparent 1px);background-size:42px 42px;animation:gridDrift 26s linear infinite;}
+.hero-glow1{position:absolute;top:-15%;left:8%;width:620px;height:620px;border-radius:50%;background:radial-gradient(circle,rgba(0,229,192,0.16) 0%,rgba(0,229,192,0) 70%);z-index:0;animation:glowDrift 18s ease-in-out infinite;}
+.hero-glow2{position:absolute;bottom:-20%;right:5%;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(77,166,255,0.13) 0%,rgba(77,166,255,0) 70%);z-index:0;animation:glowDrift 22s ease-in-out infinite reverse;}
+.hero-vignette{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(10,20,40,0.2) 0%,rgba(10,20,40,0) 30%,rgba(13,27,62,0.55) 100%);pointer-events:none;}
+.hero-inner{position:relative;z-index:2;max-width:920px;text-align:center;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:700;letter-spacing:0.26em;color:#00e5c0;text-transform:uppercase;margin-bottom:26px;padding:8px 18px;border:1px solid rgba(0,229,192,0.3);border-radius:99px;background:rgba(0,229,192,0.05);}
+.hero-eyebrow::before{content:'';width:7px;height:7px;border-radius:50%;background:#00e5c0;box-shadow:0 0 10px #00e5c0;animation:pulseDot 2s ease-in-out infinite;}
+.hero-title{font-family:'Space Grotesk','Manrope',sans-serif;font-size:clamp(44px,7vw,86px);font-weight:700;line-height:1.02;letter-spacing:-0.04em;color:#fff;margin-bottom:24px;}
+.hero-title span{color:#00e5c0;}
+.hero-anchor{font-size:clamp(16px,2vw,20px);line-height:1.6;color:#c0d8f0;max-width:680px;margin:0 auto 34px;}
+.hero-meta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:44px;}
+.hero-pill{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:#c0d8f0;padding:9px 18px;border:1px solid #1e3a5f;border-radius:99px;background:rgba(10,20,40,0.5);backdrop-filter:blur(4px);}
+.hero-pill svg{flex-shrink:0;}
+.hero-scroll{display:inline-flex;flex-direction:column;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:#7eb8d4;}
+.hero-scroll .chev{font-size:18px;color:#00e5c0;animation:scrollBob 1.8s ease-in-out infinite;}
+
+/* ══ COUNTDOWN BAND ══ */
+.countdown-band{position:relative;padding:40px 24px;text-align:center;background:#0d1b3e;border-top:1px solid #1e3a5f;border-bottom:1px solid #1e3a5f;}
+.cd-band-label{font-size:11px;font-weight:700;letter-spacing:0.24em;color:#7eb8d4;text-transform:uppercase;margin-bottom:18px;}
+
+@keyframes gridDrift{from{background-position:0 0;}to{background-position:42px 42px;}}
+@keyframes glowDrift{0%,100%{transform:translate(0,0);}50%{transform:translate(40px,30px);}}
+@keyframes pulseDot{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(0.8);}}
+@keyframes scrollBob{0%,100%{transform:translateY(0);}50%{transform:translateY(6px);}}
+
+/* ══ INDICATORS FULLSCREEN ══ */
+.indicators-wrap{position:relative;overflow:hidden;height:480px;background:#000;}
+
+/* track slides horizontally */
+.indicators-track{display:flex;height:100%;transition:transform 0.6s cubic-bezier(0.4,0,0.2,1);}
+
+.ind-card{
+  flex:0 0 100%;
+  height:100%;
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  align-items:flex-end;
+}
+
+/* photo background */
+.ind-bg{
+  position:absolute;inset:0;
+  background-size:cover;
+  background-position:center;
+  transition:transform 0.6s ease;
+}
+.ind-card:hover .ind-bg{transform:scale(1.03);}
+
+/* dark gradient overlay */
+.ind-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to right, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.15) 100%);
+}
+
+/* content over photo */
+.ind-content{
+  position:relative;z-index:2;
+  padding:56px 72px;
+  max-width:600px;
+}
+.ind-num{
+  font-size:108px;font-weight:700;line-height:1;
+  letter-spacing:-0.05em;
+  font-variant-numeric:tabular-nums;
+  color:#ffffff;
+  text-shadow:0 0 40px rgba(255,255,255,0.2);
+}
+.ind-num.blue  {color:#ffffff; text-shadow:0 0 40px rgba(255,255,255,0.2);}
+.ind-num.amber {color:#ffffff; text-shadow:0 0 40px rgba(255,255,255,0.2);}
+.ind-num.purple{color:#ffffff; text-shadow:0 0 40px rgba(255,255,255,0.2);}
+.ind-num.pink  {color:#ffffff; text-shadow:0 0 40px rgba(255,255,255,0.2);}
+.ind-title{font-size:22px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:0.12em;margin-top:14px;margin-bottom:10px;}
+.ind-desc{font-size:14.5px;color:rgba(255,255,255,0.72);line-height:1.65;max-width:440px;}
+
+/* nav arrows */
+.ind-arrow-btn{
+  position:absolute;top:50%;transform:translateY(-50%);
+  z-index:10;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);
+  color:#fff;width:44px;height:44px;border-radius:50%;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;font-size:18px;
+  transition:background 0.2s;backdrop-filter:blur(4px);
+}
+.ind-arrow-btn:hover{background:rgba(0,229,192,0.2);border-color:#00e5c0;}
+.ind-prev{left:20px;}
+.ind-next{right:20px;}
+
+/* dots */
+.ind-dots{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:10;}
+.ind-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.35);border:none;cursor:pointer;transition:background 0.2s,transform 0.2s;}
+.ind-dot.active{background:#00e5c0;transform:scale(1.3);}
+
+/* card counter */
+.ind-counter{position:absolute;top:24px;right:28px;z-index:10;font-size:12px;font-weight:600;color:rgba(255,255,255,0.5);letter-spacing:0.08em;}
+
+/* ══ SOBRE A FEIRA ══ */
+.sobre-wrap{padding:104px 48px;background:#0a1428;border-top:1px solid #1e3a5f;}
+.sobre-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;}
+.sobre-text .eyebrow{font-size:13px;font-weight:700;letter-spacing:0.2em;color:#00e5c0;text-transform:uppercase;margin-bottom:14px;}
+.sobre-text h2{font-size:44px;font-weight:700;color:#fff;line-height:1.15;margin-bottom:22px;letter-spacing:-0.025em;}
+.sobre-text h2 span{color:#00e5c0;}
+.sobre-text p{font-size:14px;color:#c0d8f0;line-height:1.8;margin-bottom:16px;}
+.sobre-text .tag-pill{display:inline-flex;align-items:center;gap:6px;background:rgba(0,229,192,0.1);border:1px solid rgba(0,229,192,0.3);color:#00e5c0;font-size:11px;font-weight:700;padding:5px 12px;border-radius:99px;margin:4px 4px 4px 0;}
+.sobre-visual{display:flex;flex-direction:column;gap:16px;}
+.pilar-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.pilar-card{background:#0d1b3e;border:1px solid #1e3a5f;border-radius:10px;padding:14px 16px;display:flex;align-items:center;gap:10px;transition:border-color 0.2s;}
+.pilar-card:hover{border-color:#00e5c0;transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,229,192,0.12);}
+.pilar-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;}
+.pilar-name{font-size:12px;font-weight:700;color:#fff;}
+.sobre-quote{background:#0d1b3e;border:1px solid #1e3a5f;border-left:3px solid #00e5c0;border-radius:10px;padding:16px 20px;font-size:13px;color:#c0d8f0;line-height:1.7;font-style:italic;}
+
+/* ══ PAGE BODY ══ */
+.page-body{padding:48px 48px 0;}
+.legend{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:20px;}
+.legend-item{display:flex;align-items:center;gap:6px;font-size:11px;color:#7eb8d4;}
+.legend-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.section-label{font-size:25px;font-weight:700;color:#00e5c0;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:20px;margin-top:0;display:flex;align-items:center;gap:12px;}
+.section-label::after{content:'';width:60px;height:1px;background:#1e3a5f;flex:0 0 60px;}
+.section-label::before{content:'';width:4px;height:18px;background:#00e5c0;border-radius:2px;flex-shrink:0;}
+
+/* PHASES */
+.phases-strip{display:flex;align-items:stretch;gap:0;position:relative;}
+.phase-col{flex:1;display:flex;flex-direction:column;}
+.phase-head{display:flex;align-items:center;position:relative;height:52px;}
+.phase-head::before{content:'';position:absolute;top:50%;left:0;right:0;height:1px;background:#1e3a5f;z-index:0;}
+.phase-col:first-child .phase-head::before{left:50%;}
+.phase-col:last-child .phase-head::before{right:50%;}
+.phase-circle{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;border:1px solid;position:relative;z-index:1;margin:0 auto;flex-shrink:0;}
+.phase-col[data-col="edu"]  .phase-circle{background:#0a1428;border-color:#2563b0;color:#7eb8d4;}
+.phase-col[data-col="pesq"] .phase-circle{background:#0a1428;border-color:#00e5c0;color:#00e5c0;}
+.phase-col[data-col="both"] .phase-circle{background:#0a1428;border-color:#ffc060;color:#ffc060;}
+.phase-label{text-align:center;padding:8px 6px 2px;font-size:11px;font-weight:700;color:#fff;line-height:1.35;min-height:36px;}
+.phase-sublabel{text-align:center;font-size:10px;color:#7eb8d4;padding:0 4px 8px;line-height:1.3;}
+.phase-tag{display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;padding:2px 8px;border-radius:99px;margin:0 auto 10px;}
+.tag-edu {background:#0f2040;color:#7eb8d4;border:1px solid #1e3a5f;}
+.tag-pesq{background:#0f3a2e;color:#00e5c0;border:1px solid #0d4c38;}
+.tag-both{background:#2a1f0a;color:#ffc060;border:1px solid #3a2f1a;}
+.tasks-area{padding:0 5px;flex:1;}
+.task-card{background:#0a1428;border:1px solid #1e3a5f;border-radius:8px;padding:10px 12px;margin-bottom:7px;font-size:11px;line-height:1.45;color:#c0d8f0;transition:background 0.2s,border-color 0.2s,transform 0.2s,box-shadow 0.2s;}
+.task-card:hover{background:#0f2040;border-color:#2563b0;transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,0.3);}
+.task-card.done{opacity:0.55;}
+.task-card .task-title{font-weight:600;color:#fff;margin-bottom:5px;font-size:12px;}
+.task-meta{display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin-top:4px;}
+.task-date{font-size:10px;color:#7eb8d4;}
+.task-date.ok{color:#00e5c0;}
+.badge-conjunto{font-size:10px;font-weight:600;background:#2a1f0a;color:#ffc060;padding:1px 7px;border-radius:99px;border:1px solid #3a2f1a;}
+.badge-ai{font-size:10px;font-weight:600;background:#1a1a4a;color:#a0a0ff;padding:1px 7px;border-radius:99px;border:1px solid #2a2a6a;}
+.avatar-circle{width:16px;height:16px;border-radius:50%;background:#1e3a5f;color:#7eb8d4;font-size:8px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;}
+.divider{height:1px;background:#1e3a5f;margin:40px 0;}
+
+/* AGENTS */
+.context-grid{position:relative;width:100%;max-width:780px;margin:0 auto;aspect-ratio:1/1;max-height:580px;}
+.dl-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:180px;background:#0a1428;border:2px solid #00e5c0;border-radius:16px;padding:16px 14px;text-align:center;z-index:10;cursor:pointer;transition:border-color 0.2s,transform 0.2s;}
+.dl-center:hover{border-color:#5fffd8;transform:translate(-50%,-50%) scale(1.04);}
+.dl-center-icon{margin:0 auto 8px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;}
+.dl-center h3{font-size:12px;font-weight:700;color:#00e5c0;line-height:1.3;margin-bottom:4px;}
+.dl-center p{font-size:10px;color:#7eb8d4;line-height:1.4;}
+.dl-open-btn{display:inline-block;margin-top:8px;font-size:10px;font-weight:700;color:#0d1b3e;background:#00e5c0;padding:4px 10px;border-radius:99px;text-decoration:none;transition:background 0.15s;}
+.dl-open-btn:hover{background:#5fffd8;}
+.agent-card{position:absolute;width:148px;background:#0a1428;border:1px solid;border-radius:14px;padding:14px 12px 12px;text-align:center;cursor:pointer;transition:transform 0.18s,border-color 0.18s;z-index:10;}
+.agent-card:hover{transform:scale(1.05);}
+.agent-card.ac{top:2%;left:2%;border-color:#00e5c0;}
+.agent-card.ef{top:2%;right:2%;border-color:#4da6ff;}
+.agent-card.fi{bottom:2%;left:2%;border-color:#a78bfa;}
+.agent-card.sp{bottom:2%;right:2%;border-color:#fbbf24;}
+.agent-card .ac-icon{width:52px;height:52px;border-radius:12px;margin:0 auto 8px;display:flex;align-items:center;justify-content:center;}
+.ac .ac-icon{background:#0d2e1f;}.ef .ac-icon{background:#0d1e35;}.fi .ac-icon{background:#1a1030;}.sp .ac-icon{background:#2a1a06;}
+.agent-card .ac-step{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;font-size:9px;font-weight:700;margin-bottom:6px;}
+.ac .ac-step{background:#00e5c0;color:#0d1b3e;}.ef .ac-step{background:#4da6ff;color:#0d1b3e;}.fi .ac-step{background:#a78bfa;color:#0d1b3e;}.sp .ac-step{background:#fbbf24;color:#0d1b3e;}
+.agent-card .ac-name{font-size:11px;font-weight:700;color:#fff;line-height:1.3;margin-bottom:4px;}
+.agent-card .ac-desc{font-size:9.5px;color:#7eb8d4;line-height:1.4;}
+.agent-card .ac-hint{font-size:9px;color:#00e5c0;margin-top:5px;opacity:0.75;}
+.connectors{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:5;}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:1000;align-items:center;justify-content:center;padding:24px;}
+.modal-overlay.open{display:flex;}
+.modal-box{background:#0a1428;border:1px solid #1e3a5f;border-radius:14px;max-width:92vw;max-height:90vh;overflow:hidden;display:flex;flex-direction:column;}
+.modal-header{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid #1e3a5f;gap:12px;}
+.modal-header h3{font-size:14px;font-weight:700;color:#00e5c0;}
+.modal-close{background:none;border:1px solid #1e3a5f;color:#7eb8d4;width:28px;height:28px;border-radius:6px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:background 0.15s;}
+.modal-close:hover{background:#0f2040;color:#fff;}
+.modal-body{overflow:auto;padding:16px;}
+.modal-body img{display:block;max-width:100%;height:auto;border-radius:8px;}
+
+/* FOOTER */
+.page-footer{padding:32px 48px;border-top:1px solid #1e3a5f;margin-top:48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+.gantt-row{transition:background 0.15s;}
+.gantt-row:hover{background:rgba(255,255,255,0.03);}
+.footer-text{font-size:11px;color:#7eb8d4;line-height:1.6;}
+.footer-text strong{color:#00e5c0;}
+
+/* ══ ANIMATIONS ══════════════════════════════════════ */
+
+/* 1. Scroll reveal */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity 0.85s cubic-bezier(0.22,1,0.36,1),transform 0.85s cubic-bezier(0.22,1,0.36,1);}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-left{opacity:0;transform:translateX(-40px);transition:opacity 0.85s cubic-bezier(0.22,1,0.36,1),transform 0.85s cubic-bezier(0.22,1,0.36,1);}
+.reveal-left.visible{opacity:1;transform:translateX(0);}
+.reveal-right{opacity:0;transform:translateX(40px);transition:opacity 0.85s cubic-bezier(0.22,1,0.36,1),transform 0.85s cubic-bezier(0.22,1,0.36,1);}
+.reveal-right.visible{opacity:1;transform:translateX(0);}
+.reveal-d1{transition-delay:0.1s;}
+.reveal-d2{transition-delay:0.2s;}
+.reveal-d3{transition-delay:0.3s;}
+.reveal-d4{transition-delay:0.4s;}
+.reveal-d5{transition-delay:0.5s;}
+.reveal-d6{transition-delay:0.6s;}
+
+/* 2. Flip countdown */
+.cd-block{perspective:300px;position:relative;}
+.cd-flip{display:inline-block;transition:transform 0.25s ease;transform-style:preserve-3d;will-change:transform;}
+.cd-flip.flipping{animation:flipDown 0.3s ease;}
+@keyframes flipDown{
+  0%{transform:rotateX(0deg);}
+  50%{transform:rotateX(-90deg);}
+  100%{transform:rotateX(0deg);}
+}
+
+/* 3. Progress bar animate */
+.prog-bar-fill{width:0;transition:none;height:100%;background:linear-gradient(90deg,#00e5c0,#4da6ff);border-radius:99px;}
+
+/* 4. Pilar cards cascade */
+.pilar-card{opacity:0;transform:translateY(20px);transition:opacity 0.5s ease,transform 0.5s ease,border-color 0.2s;}
+.pilar-card.visible{opacity:1;transform:translateY(0);}
+
+/* 5. Data lake pulse fill */
+@keyframes dlFill{
+  0%{stroke-dashoffset:200;}
+  100%{stroke-dashoffset:0;}
+}
+.dl-path-anim{stroke-dasharray:200;stroke-dashoffset:200;animation:dlFill 1.2s ease forwards;}
+.dl-path-anim-2{stroke-dasharray:200;stroke-dashoffset:200;animation:dlFill 1.2s 0.4s ease forwards;}
+.dl-path-anim-3{stroke-dasharray:200;stroke-dashoffset:200;animation:dlFill 1.2s 0.8s ease forwards;}
+
+/* 6. Number counter */
+.count-up{display:inline-block;}
+
+/* 7. Section entrance */
+.section-fade{opacity:0;transition:opacity 0.8s ease;}
+.section-fade.visible{opacity:1;}
+
+
+
+@media(max-width:900px){
+  .nav-links{display:none;}
+  .sobre-inner{grid-template-columns:1fr;}
+  .page-body{padding:32px 20px 0;}
+  .sobre-wrap{padding:48px 20px;}
+  .countdown-wrap{padding:80px 16px 40px;}
+  .indicators-wrap{height:380px;}
+  .ind-content{padding:32px 28px;}
+  .ind-num{font-size:64px;}
+}
+@media(max-width:700px){
+  .phases-strip{flex-direction:column;gap:16px;}
+  .phase-head::before{display:none;}
+  .context-grid{aspect-ratio:auto;height:auto;display:flex;flex-direction:column;align-items:center;gap:12px;max-height:none;}
+  .agent-card,.dl-center{position:static;transform:none;width:90%;max-width:280px;}
+  .connectors{display:none;}
+  .indicators-wrap{height:320px;}
+  .ind-num{font-size:52px;}
+  .ind-title{font-size:15px;}
+  .ind-desc{font-size:12px;}
+}
+</style>
+</head>
+<body style="font-size: 18px">
+
+<template id="__bundler_thumbnail" data-bg-color="#0a1428">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#0a1428"/>
+    <circle cx="600" cy="400" r="230" fill="none" stroke="#00e5c0" stroke-width="10" opacity="0.25"/>
+    <g transform="translate(600,400)">
+      <rect x="-150" y="10" width="70" height="120" rx="10" fill="#00e5c0" opacity="0.45"/>
+      <rect x="-45" y="-40" width="70" height="170" rx="10" fill="#00e5c0" opacity="0.7"/>
+      <rect x="60" y="-110" width="70" height="240" rx="10" fill="#00e5c0"/>
+      <polyline points="-150,-30 -10,-90 95,-150" fill="none" stroke="#4da6ff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+  </svg>
+</template>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeModal(event)">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3 id="modal-title">Fluxograma do agente</h3>
+      <button class="modal-close" onclick="closeModalDirect()">✕</button>
+    </div>
+    <div class="modal-body"><img id="modal-img" alt="Fluxograma do agente"></div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo" style="display:flex;align-items:center;gap:10px;">
+    <img src="logo_sindusfarma.png" height="25" alt="Sindusfarma Brasil" style="display:block;">
+  </div>
+  <div class="nav-links">
+    <a href="#sobre">Sobre a Feira</a>
+    <a href="#curadoria">Curadoria</a>
+    <a href="#programacao">Programação</a>
+    <a href="#patrocinios">Patrocínios</a>
+    <a href="#equipe">Equipe</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-bg"></div>
+  <div class="hero-glow1"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-vignette"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Sindusfarma Brasil · Feira de Negócios</div>
+    <h1 class="hero-title">Feira Sindusfarma<br>Brasil <span>2027</span></h1>
+    <p class="hero-anchor">A indústria farmacêutica brasileira reunida em dois dias de conteúdo estratégico, negócios e conexões — com uma curadoria movida por inteligência e dados do 1º Censo da Indústria Farmacêutica.</p>
+    <div class="hero-meta">
+      <span class="hero-pill"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2" stroke="#00e5c0" stroke-width="1.8"/><path d="M3 9h18M8 3v4M16 3v4" stroke="#00e5c0" stroke-width="1.8" stroke-linecap="round"/></svg> 19 e 20 de maio de 2027</span>
+      <span class="hero-pill"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11Z" stroke="#00e5c0" stroke-width="1.8"/><circle cx="12" cy="10" r="2.5" stroke="#00e5c0" stroke-width="1.8"/></svg> São Paulo · SP</span>
+    </div>
+    <div style="margin-bottom:40px;">
+      <div class="cd-band-label" style="margin-bottom:16px;">Contagem regressiva para a feira</div>
+      <div class="countdown-blocks">
+        <div class="cd-block"><div class="cd-num" id="cd-dias" style="color:#00e5c0;"><span class="cd-flip">--</span></div><div class="cd-lbl">Dias</div></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-block"><div class="cd-num" id="cd-horas" style="color:#fff;"><span class="cd-flip">--</span></div><div class="cd-lbl">Horas</div></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-block"><div class="cd-num" id="cd-min" style="color:#fff;"><span class="cd-flip">--</span></div><div class="cd-lbl">Minutos</div></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-block"><div class="cd-num" id="cd-seg" style="color:#7eb8d4;"><span class="cd-flip">--</span></div><div class="cd-lbl">Segundos</div></div>
+      </div>
+    </div>
+    <a href="#sobre" style="text-decoration:none;"><div class="hero-scroll">Role para explorar<span class="chev">&#8595;</span></div></a>
+  </div>
+</section>
+
+<!-- ══ POR QUE PARTICIPAR + INDICATORS ══ -->
+<div style="text-align:center;padding:80px 32px 36px;background:#0a1428;">
+  <div style="font-size:13px;font-weight:700;letter-spacing:0.2em;color:#00e5c0;text-transform:uppercase;margin-bottom:14px;">A feira em números</div>
+  <h2 style="font-size:clamp(30px,4vw,44px);font-weight:700;color:#fff;letter-spacing:-0.03em;line-height:1.12;">Por que participar do <span style="color:#00e5c0;">Sindusfarma Brasil</span>?</h2>
+</div>
+<div class="indicators-wrap">
+  <div class="indicators-track" id="indTrack">
+
+    <!-- Card 1 — Palestrantes -->
+    <div class="ind-card">
+      <div class="ind-bg" style="background:url('img_palestrantes.png') center/cover no-repeat, radial-gradient(120% 120% at 20% 20%, #0b3a2e 0%, #0a1428 62%)"></div>
+      <div class="ind-overlay"></div>
+      <div class="ind-content">
+        <div class="ind-num">+30</div>
+        <div class="ind-title">Palestrantes</div>
+        <div class="ind-desc">Especialistas e líderes da indústria farmacêutica brasileira compartilhando conhecimento e cases reais</div>
+      </div>
+    </div>
+
+    <!-- Card 2 — Painéis -->
+    <div class="ind-card">
+      <div class="ind-bg" style="background:url('img_paineis.png') center/cover no-repeat, radial-gradient(120% 120% at 20% 20%, #0a2c4a 0%, #0a1428 62%)"></div>
+      <div class="ind-overlay"></div>
+      <div class="ind-content">
+        <div class="ind-num blue">6</div>
+        <div class="ind-title">Pilares de conteúdo</div>
+        <div class="ind-desc">Conteúdos criados a partir dos 6 pilares do 1°Censo da Indústria Farmacêutica, com tendências e oportunidades para o setor</div>
+      </div>
+    </div>
+
+    <!-- Card 3 — Salas -->
+    <div class="ind-card">
+      <div class="ind-bg" style="background:url('img_salas.png') center/cover no-repeat, radial-gradient(120% 120% at 20% 20%, #3a2808 0%, #0a1428 62%)"></div>
+      <div class="ind-overlay"></div>
+      <div class="ind-content">
+        <div class="ind-num amber">3</div>
+        <div class="ind-title">Salas temáticas</div>
+        <div class="ind-desc">Conteúdos personalizados para fornecedores — com capacidade para 105 pessoas cada, totalmente equipadas</div>
+      </div>
+    </div>
+
+    <!-- Card 4 — Horas de conteúdo -->
+    <div class="ind-card">
+      <div class="ind-bg" style="background:url('img_conteudo.png') center/cover no-repeat, radial-gradient(120% 120% at 20% 20%, #241845 0%, #0a1428 62%)"></div>
+      <div class="ind-overlay"></div>
+      <div class="ind-content">
+        <div class="ind-num purple">+120</div>
+        <div class="ind-title">Horas de conteúdo</div>
+        <div class="ind-desc">Talks rápidos, painéis estratégicos e pílulas de conteúdo com insights diretos do Censo da Indústria Farmacêutica</div>
+      </div>
+    </div>
+
+    <!-- Card 5 — Visitantes -->
+    <div class="ind-card">
+      <div class="ind-bg" style="background:url('img_visitantes.png') center/cover no-repeat, radial-gradient(120% 120% at 20% 20%, #3a1428 0%, #0a1428 62%)"></div>
+      <div class="ind-overlay"></div>
+      <div class="ind-content">
+        <div class="ind-num pink">+4.000</div>
+        <div class="ind-title">Visitantes esperados</div>
+        <div class="ind-desc">Líderes, gestores e profissionais da indústria farmacêutica reunidos em dois dias de networking e negócios</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Controles -->
+  <button class="ind-arrow-btn ind-prev" onclick="indGo(-1)">&#8592;</button>
+  <button class="ind-arrow-btn ind-next" onclick="indGo(1)">&#8594;</button>
+  <div class="ind-dots" id="indDots"></div>
+  <div class="ind-counter" id="indCounter">1 / 5</div>
+</div>
+
+<!-- SOBRE A FEIRA -->
+<section class="sobre-wrap reveal" id="sobre">
+  <div class="sobre-inner">
+    <div class="sobre-text reveal-left">
+      <div class="eyebrow">Sobre a Feira</div>
+      <h2>Transformando o <span>Censo</span> em ações concretas para o setor farma</h2>
+      <p>A <strong>Feira Sindusfarma Brasil</strong> é um espaço de experiência imersivo e de alto impacto, concebido para evidenciar a inovação, a excelência e a relevância da indústria farmacêutica no Brasil.</p>
+      <p>Desenvolvida a partir dos principais insights do <strong>1º Censo da Indústria Farmacêutica</strong>, a feira conecta empresas, especialistas e líderes do setor em torno de conteúdo estratégico, negócios e conhecimento aplicado.</p>
+      <div style="margin-top:20px;">
+        <span class="tag-pill">📍 Espaço</span>
+        <span class="tag-pill">📅 19–20 mai. 2027</span>
+        <span class="tag-pill">🏭 Indústria Farmacêutica</span>
+        <span class="tag-pill">🤝 Sindusfarma</span>
+      </div>
+    </div>
+    <div class="sobre-visual reveal-right">
+      <div class="sobre-quote">"Criar uma feira de negócios baseada nos principais insights do 1º Censo da Indústria Farmacêutica, estruturada nos desafios reais do setor com conteúdo, conexões e soluções práticas."</div>
+      <div class="pilar-grid">
+        <div class="pilar-card reveal-d1"><div class="pilar-icon" style="background:rgba(0,229,192,0.1)">👑</div><div class="pilar-name">Liderança</div></div>
+        <div class="pilar-card reveal-d2"><div class="pilar-icon" style="background:rgba(77,166,255,0.1)">👥</div><div class="pilar-name">Recursos Humanos</div></div>
+        <div class="pilar-card reveal-d3"><div class="pilar-icon" style="background:rgba(251,191,36,0.1)">🏭</div><div class="pilar-name">Fábrica</div></div>
+        <div class="pilar-card reveal-d4"><div class="pilar-icon" style="background:rgba(167,139,250,0.1)">💰</div><div class="pilar-name">Financeiro</div></div>
+        <div class="pilar-card reveal-d5"><div class="pilar-icon" style="background:rgba(255,128,176,0.1)">📈</div><div class="pilar-name">Força de Vendas</div></div>
+        <div class="pilar-card reveal-d6"><div class="pilar-icon" style="background:rgba(0,229,192,0.1)">🔬</div><div class="pilar-name">Pesquisa Clínica</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CURADORIA INTELIGENTE ══ -->
+<section id="curadoria" style="padding:104px 0 0;background:#060e1f;overflow:hidden;position:relative;">
+
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(0,229,192,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,192,0.03) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;"></div>
+
+  <div style="max-width:1200px;margin:0 auto;padding:0 48px;position:relative;z-index:1;">
+
+    <div style="text-align:center;margin-bottom:64px;">
+      <div style="font-size:13px;font-weight:700;letter-spacing:0.2em;color:#00e5c0;text-transform:uppercase;margin-bottom:14px;">Inteligência Artificial</div>
+      <h2 style="font-size:50px;font-weight:700;color:#fff;margin-bottom:20px;line-height:1.12;letter-spacing:-0.03em;">Curadoria <span style="color:#00e5c0;">Inteligente</span></h2>
+      <p style="font-size:17px;color:#7eb8d4;max-width:720px;margin:0 auto;line-height:1.75;">A curadoria de conteúdo da Feira Sindusfarma Brasil será potencializada por agentes de Inteligência Artificial, que atuarão em conjunto com a equipe de especialistas para tornar o processo mais estratégico, preciso e eficiente.</p>
+    </div>
+
+    <div style="position:relative;" id="pipeline-wrap">
+      <div style="position:absolute;top:68px;left:10%;right:10%;height:2px;background:linear-gradient(90deg,#00e5c0,#4da6ff,#a78bfa,#fbbf24);opacity:0.3;z-index:0;"></div>
+      <canvas id="particleCanvas" style="position:absolute;top:0;left:0;width:100%;height:140px;pointer-events:none;z-index:1;"></canvas>
+
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;position:relative;z-index:2;gap:16px;">
+
+        <div class="agent-pipe-node" onclick="toggleAgent('a1')" style="flex:1;cursor:pointer;">
+          <div style="display:flex;flex-direction:column;align-items:center;">
+            <div style="position:relative;width:136px;height:136px;margin-bottom:16px;">
+              <svg viewBox="0 0 136 136" style="position:absolute;inset:0;width:100%;height:100%;animation:gearSpin 10s linear infinite;"><g transform="translate(68,68)"><circle r="46" fill="none" stroke="#00e5c0" stroke-width="1.2" opacity="0.15"/><g opacity="0.5" stroke="#00e5c0" stroke-width="1.5" fill="none"><path d="M-6,-46 L6,-46 L8,-38 L-8,-38 Z"/><path d="M-6,46 L6,46 L8,38 L-8,38 Z"/><path d="M-46,-6 L-46,6 L-38,8 L-38,-8 Z"/><path d="M46,-6 L46,6 L38,8 L38,-8 Z"/><path d="M-35,-35 L-28,-28 L-22,-34 L-29,-41 Z"/><path d="M35,35 L28,28 L22,34 L29,41 Z"/><path d="M35,-35 L28,-28 L22,-34 L29,-41 Z"/><path d="M-35,35 L-28,28 L-22,34 L-29,41 Z"/></g><circle r="30" fill="#0d2e1f" stroke="#00e5c0" stroke-width="1.5"/></g></svg>
+              <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><svg width="38" height="38" viewBox="0 0 38 38" fill="none"><rect x="4" y="20" width="7" height="14" rx="2" fill="#00e5c0"/><rect x="14" y="13" width="7" height="21" rx="2" fill="#00e5c0" fill-opacity="0.7"/><rect x="24" y="7" width="7" height="27" rx="2" fill="#00e5c0" fill-opacity="0.4"/><polyline points="5,19 11,13 19.5,16.5 30,5" stroke="#00e5c0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="30" cy="5" r="2" fill="#00e5c0"/></svg></div>
+              <div style="position:absolute;top:-4px;right:-4px;width:22px;height:22px;border-radius:50%;background:#00e5c0;color:#0d1b3e;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid #060e1f;">1</div>
+            </div>
+            <div style="font-size:13px;font-weight:700;color:#fff;text-align:center;margin-bottom:4px;">Analista do Censo</div>
+            <div style="font-size:10px;color:#00e5c0;text-align:center;">clique para expandir</div>
+          </div>
+          <div id="a1" style="display:none;margin-top:16px;background:#0d2e1f;border:1px solid #00e5c0;border-radius:12px;padding:16px;font-size:12px;">
+            <div style="color:#c0d8f0;line-height:1.8;margin-bottom:12px;">Processa os dados brutos do <strong style="color:#00e5c0;">1º Censo da Indústria Farmacêutica</strong>, identifica padrões e gera conteúdo base estruturado por pilar temático para subsidiar a grade de palestras.</div>
+            <button onclick="openModal('Analista do Censo','agente1_censo.png');event.stopPropagation();" style="width:100%;padding:8px;background:rgba(0,229,192,0.1);border:1px solid #00e5c0;color:#00e5c0;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Manrope',-apple-system,sans-serif;">Ver fluxo</button>
+          </div>
+        </div>
+
+        <div class="agent-pipe-node" onclick="toggleAgent('a2')" style="flex:1;cursor:pointer;">
+          <div style="display:flex;flex-direction:column;align-items:center;">
+            <div style="position:relative;width:136px;height:136px;margin-bottom:16px;">
+              <svg viewBox="0 0 136 136" style="position:absolute;inset:0;width:100%;height:100%;animation:gearSpin 10s linear infinite reverse;"><g transform="translate(68,68)"><circle r="46" fill="none" stroke="#4da6ff" stroke-width="1.2" opacity="0.15"/><g opacity="0.5" stroke="#4da6ff" stroke-width="1.5" fill="none"><path d="M-5,-46 L5,-46 L7,-38 L-7,-38 Z"/><path d="M-5,46 L5,46 L7,38 L-7,38 Z"/><path d="M-46,-5 L-46,5 L-38,7 L-38,-7 Z"/><path d="M46,-5 L46,5 L38,7 L38,-7 Z"/><path d="M-34,-34 L-27,-27 L-21,-33 L-28,-40 Z"/><path d="M34,34 L27,27 L21,33 L28,40 Z"/><path d="M34,-34 L27,-27 L21,-33 L28,-40 Z"/><path d="M-34,34 L-27,27 L-21,33 L-28,40 Z"/></g><circle r="30" fill="#0d1e35" stroke="#4da6ff" stroke-width="1.5"/></g></svg>
+              <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><svg width="36" height="36" viewBox="0 0 38 38" fill="none"><circle cx="16" cy="16" r="10" fill="#4da6ff" fill-opacity="0.18" stroke="#4da6ff" stroke-width="1.8"/><circle cx="16" cy="16" r="5.5" fill="#4da6ff" fill-opacity="0.3"/><line x1="23" y1="23" x2="33" y2="33" stroke="#4da6ff" stroke-width="2.8" stroke-linecap="round"/><polyline points="13,16 15.5,18.5 20,13" stroke="#4da6ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <div style="position:absolute;top:-4px;right:-4px;width:22px;height:22px;border-radius:50%;background:#4da6ff;color:#0d1b3e;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid #060e1f;">2</div>
+            </div>
+            <div style="font-size:13px;font-weight:700;color:#fff;text-align:center;margin-bottom:4px;">Especialista de Feiras</div>
+            <div style="font-size:10px;color:#4da6ff;text-align:center;">clique para expandir</div>
+          </div>
+          <div id="a2" style="display:none;margin-top:16px;background:#0d1e35;border:1px solid #4da6ff;border-radius:12px;padding:16px;font-size:12px;">
+            <div style="color:#c0d8f0;line-height:1.8;margin-bottom:12px;">Valida o conteúdo gerado cruzando com uma base de dados de <strong style="color:#4da6ff;">feiras relacionadas por tema</strong> — garantindo benchmarking de mercado e relevância estratégica para a programação.</div>
+            <button onclick="openModal('Especialista de Feiras','agente2_feiras.png');event.stopPropagation();" style="width:100%;padding:8px;background:rgba(77,166,255,0.1);border:1px solid #4da6ff;color:#4da6ff;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Manrope',-apple-system,sans-serif;">Ver fluxo</button>
+          </div>
+        </div>
+
+        <div class="agent-pipe-node" onclick="toggleAgent('a3')" style="flex:1;cursor:pointer;">
+          <div style="display:flex;flex-direction:column;align-items:center;">
+            <div style="position:relative;width:136px;height:136px;margin-bottom:16px;">
+              <svg viewBox="0 0 136 136" style="position:absolute;inset:0;width:100%;height:100%;animation:gearSpin 10s linear infinite;"><g transform="translate(68,68)"><circle r="46" fill="none" stroke="#a78bfa" stroke-width="1.2" opacity="0.15"/><g opacity="0.5" stroke="#a78bfa" stroke-width="1.5" fill="none"><path d="M-5,-46 L5,-46 L7,-38 L-7,-38 Z"/><path d="M-5,46 L5,46 L7,38 L-7,38 Z"/><path d="M-46,-5 L-46,5 L-38,7 L-38,-7 Z"/><path d="M46,-5 L46,5 L38,7 L38,-7 Z"/><path d="M-34,-34 L-27,-27 L-21,-33 L-28,-40 Z"/><path d="M34,34 L27,27 L21,33 L28,40 Z"/><path d="M34,-34 L27,-27 L21,-33 L28,-40 Z"/><path d="M-34,34 L-27,27 L-21,33 L-28,40 Z"/></g><circle r="30" fill="#1a1030" stroke="#a78bfa" stroke-width="1.5"/></g></svg>
+              <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><svg width="36" height="36" viewBox="0 0 38 38" fill="none"><circle cx="11" cy="11" r="6" fill="#a78bfa" fill-opacity="0.25" stroke="#a78bfa" stroke-width="1.6"/><circle cx="27" cy="11" r="6" fill="#a78bfa" fill-opacity="0.25" stroke="#a78bfa" stroke-width="1.6"/><path d="M11 17 Q11 30 19 30 Q27 30 27 17" stroke="#a78bfa" stroke-width="1.6" fill="#a78bfa" fill-opacity="0.12"/><circle cx="19" cy="31" r="3.5" fill="#a78bfa"/></svg></div>
+              <div style="position:absolute;top:-4px;right:-4px;width:22px;height:22px;border-radius:50%;background:#a78bfa;color:#0d1b3e;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid #060e1f;">3</div>
+            </div>
+            <div style="font-size:13px;font-weight:700;color:#fff;text-align:center;margin-bottom:4px;">Fusão de Insights</div>
+            <div style="font-size:10px;color:#a78bfa;text-align:center;">clique para expandir</div>
+          </div>
+          <div id="a3" style="display:none;margin-top:16px;background:#1a1030;border:1px solid #a78bfa;border-radius:12px;padding:16px;font-size:12px;">
+            <div style="color:#c0d8f0;line-height:1.8;margin-bottom:12px;">Funde as <strong style="color:#a78bfa;">transcrições dos grupos focais</strong> com o conteúdo validado pelos agentes anteriores — gerando um contexto enriquecido e humanizado que reflete as reais necessidades do setor.</div>
+            <button onclick="openModal('Fusão de Insights','agente3_fusao.png');event.stopPropagation();" style="width:100%;padding:8px;background:rgba(167,139,250,0.1);border:1px solid #a78bfa;color:#a78bfa;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Manrope',-apple-system,sans-serif;">Ver fluxo</button>
+          </div>
+        </div>
+
+        <div class="agent-pipe-node" onclick="toggleAgent('a4')" style="flex:1;cursor:pointer;">
+          <div style="display:flex;flex-direction:column;align-items:center;">
+            <div style="position:relative;width:136px;height:136px;margin-bottom:16px;">
+              <svg viewBox="0 0 136 136" style="position:absolute;inset:0;width:100%;height:100%;animation:gearSpin 10s linear infinite reverse;"><g transform="translate(68,68)"><circle r="46" fill="none" stroke="#fbbf24" stroke-width="1.2" opacity="0.15"/><g opacity="0.5" stroke="#fbbf24" stroke-width="1.5" fill="none"><path d="M-5,-46 L5,-46 L7,-38 L-7,-38 Z"/><path d="M-5,46 L5,46 L7,38 L-7,38 Z"/><path d="M-46,-5 L-46,5 L-38,7 L-38,-7 Z"/><path d="M46,-5 L46,5 L38,7 L38,-7 Z"/><path d="M-34,-34 L-27,-27 L-21,-33 L-28,-40 Z"/><path d="M34,34 L27,27 L21,33 L28,40 Z"/><path d="M34,-34 L27,-27 L21,-33 L28,-40 Z"/><path d="M-34,34 L-27,27 L-21,33 L-28,40 Z"/></g><circle r="30" fill="#2a1a06" stroke="#fbbf24" stroke-width="1.5"/></g></svg>
+              <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><svg width="36" height="36" viewBox="0 0 38 38" fill="none"><circle cx="19" cy="12" r="6.5" fill="#fbbf24" fill-opacity="0.25" stroke="#fbbf24" stroke-width="1.6"/><path d="M6 34 C6 25 11 22 19 22 C27 22 32 25 32 34" stroke="#fbbf24" stroke-width="1.6" stroke-linecap="round" fill="#fbbf24" fill-opacity="0.12"/><polygon points="28,4 29.5,8.5 34,8.5 30.5,11.2 32,16 28,13.2 24,16 25.5,11.2 22,8.5 26.5,8.5" fill="#fbbf24"/></svg></div>
+              <div style="position:absolute;top:-4px;right:-4px;width:22px;height:22px;border-radius:50%;background:#fbbf24;color:#0d1b3e;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid #060e1f;">4</div>
+            </div>
+            <div style="font-size:13px;font-weight:700;color:#fff;text-align:center;margin-bottom:4px;">Scout de Palestrantes</div>
+            <div style="font-size:10px;color:#fbbf24;text-align:center;">clique para expandir</div>
+          </div>
+          <div id="a4" style="display:none;margin-top:16px;background:#2a1a06;border:1px solid #fbbf24;border-radius:12px;padding:16px;font-size:12px;">
+            <div style="color:#c0d8f0;line-height:1.8;margin-bottom:12px;">Busca os melhores <strong style="color:#fbbf24;">speakers para cada tema</strong> com base nos insights consolidados — cruzando referências com benchmarks do setor e validando opções via busca na web.</div>
+            <button onclick="openModal('Scout de Palestrantes','agente4_palestrantes.png');event.stopPropagation();" style="width:100%;padding:8px;background:rgba(251,191,36,0.1);border:1px solid #fbbf24;color:#fbbf24;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Manrope',-apple-system,sans-serif;">Ver fluxo</button>
+          </div>
+        </div>
+
+      </div>
+
+      <div style="text-align:center;margin:32px 0 16px;position:relative;z-index:2;">
+        <div style="display:inline-flex;flex-direction:column;align-items:center;gap:4px;">
+          <div style="font-size:11px;color:#7eb8d4;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;">todos os insights convergem para</div>
+          <div style="font-size:24px;color:#00e5c0;animation:pulse 2s ease-in-out infinite;">&#8595;</div>
+        </div>
+      </div>
+
+      <div style="background:linear-gradient(135deg,#0a1428,#0d2e1f);border:2px solid #00e5c0;border-radius:20px;padding:28px 32px;display:flex;align-items:center;gap:24px;box-shadow:0 0 40px rgba(0,229,192,0.15);position:relative;z-index:2;">
+        <div style="width:72px;height:72px;border-radius:16px;background:#0f2040;border:1px solid #00e5c0;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="40" height="40" viewBox="0 0 44 44" fill="none"><ellipse cx="22" cy="11" rx="14" ry="4.5" fill="#00e5c0" fill-opacity="0.2" stroke="#00e5c0" stroke-width="1.5"/><path d="M8 11v7c0 2.5 6.3 4.5 14 4.5s14-2 14-4.5v-7" stroke="#00e5c0" stroke-width="1.5" fill="none"/><path d="M8 18v7c0 2.5 6.3 4.5 14 4.5s14-2 14-4.5v-7" stroke="#00e5c0" stroke-width="1.5" fill="none"/><path d="M8 25v7c0 2.5 6.3 4.5 14 4.5s14-2 14-4.5v-7" stroke="#00e5c0" stroke-width="1.5" fill="none"/></svg></div>
+        <div style="flex:1;">
+          <div style="font-size:18px;font-weight:700;color:#00e5c0;margin-bottom:6px;">Data Lake</div>
+          <div style="font-size:13px;color:#c0d8f0;line-height:1.6;margin-bottom:12px;">Repositório central de contexto — alimentado por todos os agentes — que sustenta a curadoria completa de palestrantes, conteúdos e trilhas da feira.</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <span style="font-size:10px;font-weight:600;padding:3px 10px;border-radius:99px;background:rgba(0,229,192,0.1);color:#00e5c0;border:1px solid rgba(0,229,192,0.3);">CENSO Farmacêutico</span>
+            <span style="font-size:10px;font-weight:600;padding:3px 10px;border-radius:99px;background:rgba(0,229,192,0.1);color:#00e5c0;border:1px solid rgba(0,229,192,0.3);">Benchmark de Feiras</span>
+            <span style="font-size:10px;font-weight:600;padding:3px 10px;border-radius:99px;background:rgba(0,229,192,0.1);color:#00e5c0;border:1px solid rgba(0,229,192,0.3);">Grupos Focais</span>
+            <span style="font-size:10px;font-weight:600;padding:3px 10px;border-radius:99px;background:rgba(0,229,192,0.1);color:#00e5c0;border:1px solid rgba(0,229,192,0.3);">Insights Fundidos</span>
+            <span style="font-size:10px;font-weight:600;padding:3px 10px;border-radius:99px;background:rgba(0,229,192,0.1);color:#00e5c0;border:1px solid rgba(0,229,192,0.3);">Palestrantes Sugeridos</span>
+          </div>
+        </div>
+        <a href="https://sindusfarma-my.sharepoint.com/:x:/g/personal/nathan_sindusfarma_org_br/IQCKcWIhmfK6Sbu8opI_PO5YAd-ZmstWF0QbBZjKA5FcqnM?e=8CTaee" target="_blank" rel="noopener" style="flex-shrink:0;padding:12px 20px;background:#00e5c0;color:#0d1b3e;border-radius:10px;font-size:12px;font-weight:700;text-decoration:none;white-space:nowrap;">&#8599; Abrir arquivo</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- GANTT dentro da Curadoria Inteligente -->
+  <div style="padding:60px 48px 80px;border-top:1px solid rgba(0,229,192,0.1);">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div class="section-label">Cronograma de Execução</div>
+      <p style="font-size:13px;color:#7eb8d4;line-height:1.8;max-width:none;margin-bottom:28px;text-align:justify;">O planejamento da Feira Sindusfarma Brasil foi estruturado em fases integradas e complementares, garantindo uma execução organizada, eficiente e alinhada aos objetivos estratégicos do projeto. O cronograma contempla desde a definição da estratégia e curadoria de conteúdo até as ações de comunicação, comercialização, operacionalização e realização do evento.</p>
+  <div style="display:flex;gap:20px;flex-wrap:wrap;margin-bottom:24px;">
+    <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#7eb8d4;"><div style="width:14px;height:14px;border-radius:4px;background:#00e5c0;flex-shrink:0;"></div> Planejamento Estratégico</div>
+    <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#7eb8d4;"><div style="width:14px;height:14px;border-radius:4px;background:#4da6ff;flex-shrink:0;"></div> Patrocínios & Conteúdos</div>
+    <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#7eb8d4;"><div style="width:14px;height:14px;border-radius:4px;background:#a78bfa;flex-shrink:0;"></div> Estratégia de Comunicação</div>
+    <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#7eb8d4;"><div style="width:14px;height:14px;border-radius:4px;background:#fbbf24;flex-shrink:0;"></div> Execução & Entrega</div>
+    <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#7eb8d4;"><div style="width:14px;height:14px;border-radius:4px;background:#ff6b6b;flex-shrink:0;"></div> Feira</div>
+  </div>
+
+  <!-- GANTT CONTAINER -->
+  <div style="display:flex;align-items:center;gap:7px;margin-bottom:10px;font-size:11px;color:#7eb8d4;">
+    <svg width="12" height="12" viewBox="0 0 24 24" style="flex-shrink:0;"><polyline points="9 6 15 12 9 18" fill="none" stroke="#00e5c0" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Clique em cada fase para ver as ações
+  </div>
+  <div style="background:#0a1428;border:1px solid #1e3a5f;border-radius:14px;overflow:hidden;">
+
+    <!-- Month headers -->
+    <div style="display:flex;border-bottom:1px solid #1e3a5f;">
+      <div style="width:220px;flex-shrink:0;padding:10px 16px;font-size:11px;font-weight:700;color:#7eb8d4;text-transform:uppercase;letter-spacing:0.08em;border-right:1px solid #1e3a5f;">Fase</div>
+      <div style="flex:1;display:grid;grid-template-columns:repeat(14,1fr);">
+        <div style="padding:10px 0;text-align:center;font-size:10px;font-weight:700;color:#7eb8d4;border-right:1px solid rgba(255,255,255,0.05);">Abr<br><span style="color:#3a5a7a;font-weight:400;">26</span></div>
+        <div style="padding:10px 0;text-align:center;font-size:10px;font-weight:700;color:#7eb8d4;border-right:1px solid rgba(255,255,255,0.05);">Mai<br><span style="color:#3a5a7a;font-weight:400;">26</span></div>
+        <div style="padding:10px 0;text-align:center;font-size:10px;font-weight:700;color:#7eb8d4;border-right:1px solid rgba(255,255,255,0.05);">Jun<br><span style="color:#3a5a7a;font-weight:400;">26</span></div>
+        <div style="padding:10px 0;text-align:center;font-size:10px;font-weight:700;color:#7eb8d4;border-right:1px solid rgba(255,255,255,0.05);">Jul<br><span style="color:#3a5a7a;font-weight:400;">26</span></div>
+        <div style="padding:10px 0;text-align:center;font-size:10px;font-weight:700;color:#7eb8d4;border-right:1px solid rgba(255,255,255,0.05);">Ago<br><span style="color:#3a5a7a;font-weight:400;">26</span></div>
+        <div style="padding:10px 0;text-align:center;font-size:10px;font-weight:700;color:#7eb8d4;border-right:1px solid rgba(255,255,255,0.05);">Set<br><span style="color:#3a5a7a;font-weight:400;">26</span></div>
+        <div style="padding:10px 0;text-align:center;font-size:10px;font-weight:700;color:#7eb8d4;border-right:1px solid rgba(255,255,255,0.05);">Out<br><span style="color:#3a5a7a;font-weight:400;">26</span></div>
+        <div style="padding:10px 0;text-align:center;font-size:10px;font-weight:700;color:#7eb8d4;border-right:1px solid rgba(255,255,255,0.05);">Nov<br><span style="color:#3a5a7a;font-weight:400;">26</span></div>
+        <div style="padding:10px 0;text-align:center;font-size:10px;font-weight:700;color:#7eb8d4;border-right:1px solid rgba(255,255,255,0.05);">Dez<br><span style="color:#3a5a7a;font-weight:400;">26</span></div>
+        <div style="padding:10px 0;text-align:center;font-size:10px;font-weight:700;color:#7eb8d4;border-right:1px solid rgba(255,255,255,0.05);">Jan<br><span style="color:#3a5a7a;font-weight:400;">27</span></div>
+        <div style="padding:10px 0;text-align:center;font-size:10px;font-weight:700;color:#7eb8d4;border-right:1px solid rgba(255,255,255,0.05);">Fev<br><span style="color:#3a5a7a;font-weight:400;">27</span></div>
+        <div style="padding:10px 0;text-align:center;font-size:10px;font-weight:700;color:#7eb8d4;border-right:1px solid rgba(255,255,255,0.05);">Mar<br><span style="color:#3a5a7a;font-weight:400;">27</span></div>
+        <div style="padding:10px 0;text-align:center;font-size:10px;font-weight:700;color:#7eb8d4;border-right:1px solid rgba(255,255,255,0.05);">Abr<br><span style="color:#3a5a7a;font-weight:400;">27</span></div>
+        <div style="padding:10px 0;text-align:center;font-size:10px;font-weight:700;color:#ff6b6b;">Mai<br><span style="color:#ff6b6b;font-weight:700;">27</span></div>
+      </div>
+    </div>
+
+    <!-- Planejamento Estratégico: Abr–Out 2026 -->
+    <div class="gantt-row" style="border-bottom:1px solid #1e3a5f;">
+      <div onclick="togglePhase('gp1')" style="display:flex;align-items:center;cursor:pointer;transition:background 0.15s;" onmouseover="this.style.background='rgba(255,255,255,0.025)'" onmouseout="this.style.background='transparent'">
+        <div style="width:220px;flex-shrink:0;padding:14px 16px;border-right:1px solid #1e3a5f;display:flex;align-items:center;gap:9px;">
+          <svg id="chev-gp1" width="12" height="12" viewBox="0 0 24 24" style="flex-shrink:0;transition:transform 0.25s cubic-bezier(0.22,1,0.36,1);"><polyline points="9 6 15 12 9 18" fill="none" stroke="#00e5c0" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div style="font-size:12px;font-weight:700;color:#fff;">Planejamento Estratégico</div>
+        </div>
+        <div style="flex:1;display:grid;grid-template-columns:repeat(14,1fr);height:48px;align-items:center;padding:8px 4px;gap:2px;">
+          <div style="grid-column:1/8;background:#00e5c0;border-radius:6px;height:28px;display:flex;align-items:center;padding:0 10px;font-size:10px;font-weight:700;color:#0d1b3e;white-space:nowrap;overflow:hidden;box-shadow:0 2px 8px rgba(0,229,192,0.3);">Abr – Out 2026</div>
+        </div>
+      </div>
+      <div id="gp1" class="gantt-detail" style="display:none;padding:8px 24px 18px 46px;background:#070f22;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#00e5c0;margin-bottom:12px;">Ações da fase</div>
+        <div style="display:flex;align-items:flex-start;gap:10px;padding:6px 0;"><div style="width:6px;height:6px;border-radius:50%;background:#00e5c0;margin-top:7px;flex-shrink:0;"></div><div style="font-size:13px;color:#c0d8f0;line-height:1.55;">Análise do projeto e aprovação de Budget</div></div>
+        <div style="display:flex;align-items:flex-start;gap:10px;padding:6px 0;"><div style="width:6px;height:6px;border-radius:50%;background:#00e5c0;margin-top:7px;flex-shrink:0;"></div><div style="font-size:13px;color:#c0d8f0;line-height:1.55;">Definição do comitê organizador</div></div>
+        <div style="display:flex;align-items:flex-start;gap:10px;padding:6px 0;"><div style="width:6px;height:6px;border-radius:50%;background:#00e5c0;margin-top:7px;flex-shrink:0;"></div><div style="font-size:13px;color:#c0d8f0;line-height:1.55;">Construção do Data Lake</div></div>
+        <div style="display:flex;align-items:flex-start;gap:10px;padding:6px 0;"><div style="width:6px;height:6px;border-radius:50%;background:#00e5c0;margin-top:7px;flex-shrink:0;"></div><div style="font-size:13px;color:#c0d8f0;line-height:1.55;">Realização das reuniões com os grupos focais</div></div>
+        <div style="display:flex;align-items:flex-start;gap:10px;padding:6px 0;"><div style="width:6px;height:6px;border-radius:50%;background:#00e5c0;margin-top:7px;flex-shrink:0;"></div><div style="font-size:13px;color:#c0d8f0;line-height:1.55;">Definição do conselho curador externo</div></div>
+      </div>
+    </div>
+
+    <!-- Patrocínios & Conteúdos: Jun 2026–Fev 2027 -->
+    <div class="gantt-row" style="border-bottom:1px solid #1e3a5f;">
+      <div onclick="togglePhase('gp2')" style="display:flex;align-items:center;cursor:pointer;transition:background 0.15s;" onmouseover="this.style.background='rgba(255,255,255,0.025)'" onmouseout="this.style.background='transparent'">
+        <div style="width:220px;flex-shrink:0;padding:14px 16px;border-right:1px solid #1e3a5f;display:flex;align-items:center;gap:9px;">
+          <svg id="chev-gp2" width="12" height="12" viewBox="0 0 24 24" style="flex-shrink:0;transition:transform 0.25s cubic-bezier(0.22,1,0.36,1);"><polyline points="9 6 15 12 9 18" fill="none" stroke="#4da6ff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div style="font-size:12px;font-weight:700;color:#fff;">Patrocínios & Conteúdos</div>
+        </div>
+        <div style="flex:1;display:grid;grid-template-columns:repeat(14,1fr);height:48px;align-items:center;padding:8px 4px;">
+          <div style="grid-column:3/12;background:#4da6ff;border-radius:6px;height:28px;display:flex;align-items:center;padding:0 10px;font-size:10px;font-weight:700;color:#0d1b3e;white-space:nowrap;overflow:hidden;box-shadow:0 2px 8px rgba(77,166,255,0.3);">Jun 2026 – Fev 2027</div>
+        </div>
+      </div>
+      <div id="gp2" class="gantt-detail" style="display:none;padding:8px 24px 18px 46px;background:#070f22;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#4da6ff;margin-bottom:12px;">Ações da fase</div>
+        <div style="display:flex;align-items:flex-start;gap:10px;padding:6px 0;"><div style="width:6px;height:6px;border-radius:50%;background:#4da6ff;margin-top:7px;flex-shrink:0;"></div><div style="font-size:13px;color:#c0d8f0;line-height:1.55;">Café da manhã de lançamento comercial</div></div>
+        <div style="display:flex;align-items:flex-start;gap:10px;padding:6px 0;"><div style="width:6px;height:6px;border-radius:50%;background:#4da6ff;margin-top:7px;flex-shrink:0;"></div><div style="font-size:13px;color:#c0d8f0;line-height:1.55;">Comercialização de estandes e patrocínios</div></div>
+        <div style="display:flex;align-items:flex-start;gap:10px;padding:6px 0;"><div style="width:6px;height:6px;border-radius:50%;background:#4da6ff;margin-top:7px;flex-shrink:0;"></div><div style="font-size:13px;color:#c0d8f0;line-height:1.55;">Programação científica e keynotes</div></div>
+        <div style="display:flex;align-items:flex-start;gap:10px;padding:6px 0;"><div style="width:6px;height:6px;border-radius:50%;background:#4da6ff;margin-top:7px;flex-shrink:0;"></div><div style="font-size:13px;color:#c0d8f0;line-height:1.55;">Plataforma digital e credenciamento</div></div>
+      </div>
+    </div>
+
+    <!-- Comunicação: Set 2026–Mar 2027 -->
+    <div class="gantt-row" style="border-bottom:1px solid #1e3a5f;">
+      <div onclick="togglePhase('gp3')" style="display:flex;align-items:center;cursor:pointer;transition:background 0.15s;" onmouseover="this.style.background='rgba(255,255,255,0.025)'" onmouseout="this.style.background='transparent'">
+        <div style="width:220px;flex-shrink:0;padding:14px 16px;border-right:1px solid #1e3a5f;display:flex;align-items:center;gap:9px;">
+          <svg id="chev-gp3" width="12" height="12" viewBox="0 0 24 24" style="flex-shrink:0;transition:transform 0.25s cubic-bezier(0.22,1,0.36,1);"><polyline points="9 6 15 12 9 18" fill="none" stroke="#a78bfa" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div style="font-size:12px;font-weight:700;color:#fff;">Estratégia de Comunicação</div>
+        </div>
+        <div style="flex:1;display:grid;grid-template-columns:repeat(14,1fr);height:48px;align-items:center;padding:8px 4px;">
+          <div style="grid-column:6/13;background:#a78bfa;border-radius:6px;height:28px;display:flex;align-items:center;padding:0 10px;font-size:10px;font-weight:700;color:#0d1b3e;white-space:nowrap;overflow:hidden;box-shadow:0 2px 8px rgba(167,139,250,0.3);">Set 2026 – Mar 2027</div>
+        </div>
+      </div>
+      <div id="gp3" class="gantt-detail" style="display:none;padding:8px 24px 18px 46px;background:#070f22;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#a78bfa;margin-bottom:12px;">Ações da fase</div>
+        <div style="display:flex;align-items:flex-start;gap:10px;padding:6px 0;"><div style="width:6px;height:6px;border-radius:50%;background:#a78bfa;margin-top:7px;flex-shrink:0;"></div><div style="font-size:13px;color:#c0d8f0;line-height:1.55;">Campanhas de marketing (email, mídias sociais etc.)</div></div>
+        <div style="display:flex;align-items:flex-start;gap:10px;padding:6px 0;"><div style="width:6px;height:6px;border-radius:50%;background:#a78bfa;margin-top:7px;flex-shrink:0;"></div><div style="font-size:13px;color:#c0d8f0;line-height:1.55;">Abertura de inscrições</div></div>
+        <div style="display:flex;align-items:flex-start;gap:10px;padding:6px 0;"><div style="width:6px;height:6px;border-radius:50%;background:#a78bfa;margin-top:7px;flex-shrink:0;"></div><div style="font-size:13px;color:#c0d8f0;line-height:1.55;">Definição dos palestrantes e envio dos convites (empresa especializada em RSVP)</div></div>
+      </div>
+    </div>
+
+    <!-- Execução: Fev–Abr 2027 -->
+    <div class="gantt-row" style="border-bottom:1px solid #1e3a5f;">
+      <div onclick="togglePhase('gp4')" style="display:flex;align-items:center;cursor:pointer;transition:background 0.15s;" onmouseover="this.style.background='rgba(255,255,255,0.025)'" onmouseout="this.style.background='transparent'">
+        <div style="width:220px;flex-shrink:0;padding:14px 16px;border-right:1px solid #1e3a5f;display:flex;align-items:center;gap:9px;">
+          <svg id="chev-gp4" width="12" height="12" viewBox="0 0 24 24" style="flex-shrink:0;transition:transform 0.25s cubic-bezier(0.22,1,0.36,1);"><polyline points="9 6 15 12 9 18" fill="none" stroke="#fbbf24" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div style="font-size:12px;font-weight:700;color:#fff;">Execução & Entrega</div>
+        </div>
+        <div style="flex:1;display:grid;grid-template-columns:repeat(14,1fr);height:48px;align-items:center;padding:8px 4px;">
+          <div style="grid-column:11/14;background:#fbbf24;border-radius:6px;height:28px;display:flex;align-items:center;padding:0 10px;font-size:10px;font-weight:700;color:#0d1b3e;white-space:nowrap;overflow:hidden;box-shadow:0 2px 8px rgba(251,191,36,0.3);">Fev – Abr 2027</div>
+        </div>
+      </div>
+      <div id="gp4" class="gantt-detail" style="display:none;padding:8px 24px 18px 46px;background:#070f22;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#fbbf24;margin-bottom:12px;">Ações da fase</div>
+        <div style="display:flex;align-items:flex-start;gap:10px;padding:6px 0;"><div style="width:6px;height:6px;border-radius:50%;background:#fbbf24;margin-top:7px;flex-shrink:0;"></div><div style="font-size:13px;color:#c0d8f0;line-height:1.55;">Montagem e logística</div></div>
+        <div style="display:flex;align-items:flex-start;gap:10px;padding:6px 0;"><div style="width:6px;height:6px;border-radius:50%;background:#fbbf24;margin-top:7px;flex-shrink:0;"></div><div style="font-size:13px;color:#c0d8f0;line-height:1.55;">Cobertura ao vivo e conteúdo digital</div></div>
+        <div style="display:flex;align-items:flex-start;gap:10px;padding:6px 0;"><div style="width:6px;height:6px;border-radius:50%;background:#fbbf24;margin-top:7px;flex-shrink:0;"></div><div style="font-size:13px;color:#c0d8f0;line-height:1.55;">Pós-evento: relatório e follow-up</div></div>
+      </div>
+    </div>
+
+    <!-- FEIRA row -->
+    <div style="display:flex;align-items:center;background:rgba(255,107,107,0.06);" class="gantt-row">
+      <div style="width:220px;flex-shrink:0;padding:14px 16px;border-right:1px solid #1e3a5f;">
+        <div style="font-size:12px;font-weight:700;color:#ff6b6b;margin-bottom:2px;">FEIRA</div>
+        <div style="font-size:10px;color:#7eb8d4;">19–20 mai. 2027</div>
+      </div>
+      <div style="flex:1;display:grid;grid-template-columns:repeat(14,1fr);height:48px;align-items:center;padding:8px 4px;">
+        <div style="grid-column:14/15;background:#ff6b6b;border-radius:6px;height:32px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;box-shadow:0 2px 12px rgba(255,107,107,0.5);">🎯</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="margin-top:12px;font-size:11px;color:#3a5a7a;text-align:right;font-style:italic;">* As fases ocorrem de forma simultânea</div>
+    </div>
+  </div>
+
+  <style>
+    @keyframes gearSpin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+    @keyframes pulse { 0%,100%{opacity:0.4;transform:translateY(0)} 50%{opacity:1;transform:translateY(4px)} }
+    .agent-pipe-node{transition:transform 0.28s cubic-bezier(0.22,1,0.36,1);}
+    .agent-pipe-node:hover{transform:translateY(-6px);}
+  </style>
+
+</section>
+
+<!-- ══ PROGRAMAÇÃO ══ -->
+<section id="programacao" style="padding:104px 48px;background:#0d1b3e;border-top:1px solid #1e3a5f;">
+  <div style="max-width:1200px;margin:0 auto;">
+
+    <div style="font-size:13px;font-weight:700;letter-spacing:0.2em;color:#00e5c0;text-transform:uppercase;margin-bottom:14px;">Grade de palestras</div>
+    <h2 style="font-size:42px;font-weight:700;color:#fff;margin-bottom:32px;letter-spacing:-0.025em;">Programação da Feira</h2>
+
+    <!-- DIA SELECTOR -->
+    <div style="display:flex;gap:12px;margin-bottom:28px;flex-wrap:wrap;">
+      <button onclick="selectDia(1)" id="btn-dia1" style="padding:14px 36px;border-radius:99px;font-size:14px;font-weight:700;cursor:pointer;border:2px solid #00e5c0;background:#00e5c0;color:#0d1b3e;font-family:'Manrope',-apple-system,sans-serif;transition:all 0.2s;">19 Mai — Terça</button>
+      <button onclick="selectDia(2)" id="btn-dia2" style="padding:14px 36px;border-radius:99px;font-size:14px;font-weight:700;cursor:pointer;border:2px solid #1e3a5f;background:transparent;color:#7eb8d4;font-family:'Manrope',-apple-system,sans-serif;transition:all 0.2s;">20 Mai — Quarta</button>
+    </div>
+
+    <!-- SALA SELECTOR -->
+    <div style="display:flex;gap:10px;margin-bottom:28px;flex-wrap:wrap;" id="sala-btns">
+      <button onclick="selectSala('plenaria')" id="btn-plenaria" style="padding:10px 24px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;background:#4da6ff;border:none;color:#0d1b3e;font-family:'Manrope',-apple-system,sans-serif;transition:all 0.2s;">Plenária</button>
+      <button onclick="selectSala('sala1')" id="btn-sala1" style="padding:10px 24px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;background:#0a1428;border:2px solid #1e3a5f;color:#7eb8d4;font-family:'Manrope',-apple-system,sans-serif;transition:all 0.2s;">Sala 1</button>
+      <button onclick="selectSala('sala2')" id="btn-sala2" style="padding:10px 24px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;background:#0a1428;border:2px solid #1e3a5f;color:#7eb8d4;font-family:'Manrope',-apple-system,sans-serif;transition:all 0.2s;">Sala 2</button>
+
+      <!-- TIPO FILTER -->
+      <div style="margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;" id="tipo-btns">
+        <button onclick="selectTipo('todos')" id="btn-todos" style="padding:8px 16px;border-radius:99px;font-size:11px;font-weight:700;cursor:pointer;background:#00e5c0;border:none;color:#0d1b3e;font-family:'Manrope',-apple-system,sans-serif;transition:all 0.2s;">Todos</button>
+        <button onclick="selectTipo('palestra')" id="btn-palestra" style="padding:8px 16px;border-radius:99px;font-size:11px;font-weight:700;cursor:pointer;background:transparent;border:1px solid #1e3a5f;color:#7eb8d4;font-family:'Manrope',-apple-system,sans-serif;transition:all 0.2s;">Palestra</button>
+        <button onclick="selectTipo('mesa')" id="btn-mesa" style="padding:8px 16px;border-radius:99px;font-size:11px;font-weight:700;cursor:pointer;background:transparent;border:1px solid #1e3a5f;color:#7eb8d4;font-family:'Manrope',-apple-system,sans-serif;transition:all 0.2s;">Mesa redonda</button>
+        <button onclick="selectTipo('negocios')" id="btn-negocios" style="padding:8px 16px;border-radius:99px;font-size:11px;font-weight:700;cursor:pointer;background:transparent;border:1px solid #1e3a5f;color:#7eb8d4;font-family:'Manrope',-apple-system,sans-serif;transition:all 0.2s;">Roda de negócios</button>
+      </div>
+    </div>
+
+    <!-- GRADE INFO -->
+    <div style="display:flex;gap:16px;margin-bottom:20px;flex-wrap:wrap;">
+      <div style="font-size:11px;color:#7eb8d4;display:flex;align-items:center;gap:6px;">
+        <div style="width:10px;height:10px;border-radius:2px;background:#4da6ff;"></div> Plenária — 8 slots/dia · 50min palestra + 10min troca · 100 lugares
+      </div>
+      <div style="font-size:11px;color:#7eb8d4;display:flex;align-items:center;gap:6px;">
+        <div style="width:10px;height:10px;border-radius:2px;background:#a78bfa;"></div> Salas — 10 slots/dia · 30min palestra + 10min troca · 100 lugares · 10h–17h
+      </div>
+    </div>
+
+    <!-- GRADE CONTAINER -->
+    <div id="grade-container" style="background:#0a1428;border:1px solid #1e3a5f;border-radius:14px;overflow:hidden;">
+      <!-- slots rendered by JS -->
+    </div>
+
+    <!-- BARRA DE PROGRESSO -->
+    <div style="margin-top:32px;background:#0a1428;border:1px solid #1e3a5f;border-radius:12px;padding:20px 24px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px;">
+        <div>
+          <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:2px;">Progresso da grade completa</div>
+          <div style="font-size:11px;color:#7eb8d4;">Meta: 56 palestras confirmadas (28 por dia)</div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-size:28px;font-weight:700;color:#00e5c0;line-height:1;"><span id="prog-num">46</span> <span id="prog-den" style="font-size:14px;color:#7eb8d4;font-weight:400;">/ 56</span></div>
+          <div style="font-size:11px;color:#7eb8d4;">palestras confirmadas</div>
+        </div>
+      </div>
+        <div style="background:#1e3a5f;border-radius:99px;height:10px;overflow:hidden;">
+          <div id="prog-fill" class="prog-bar-fill"></div>
+        </div>
+      <div style="display:flex;justify-content:space-between;margin-top:8px;">
+        <div style="font-size:10px;color:#3a5a7a;">0%</div>
+        <div id="prog-pct" style="font-size:11px;font-weight:700;color:#00e5c0;">82,1% concluído</div>
+        <div style="font-size:10px;color:#3a5a7a;">100%</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ PATROCÍNIOS ══ -->
+<section id="patrocinios" style="padding:104px 48px;background:#0d1b3e;border-top:1px solid #1e3a5f;">
+  <div style="max-width:1100px;margin:0 auto;">
+
+    <div style="font-size:13px;font-weight:700;letter-spacing:0.2em;color:#00e5c0;text-transform:uppercase;margin-bottom:14px;">Apoio & Patrocínio</div>
+    <h2 style="font-size:42px;font-weight:700;color:#fff;margin-bottom:12px;letter-spacing:-0.025em;">Patrocinadores</h2>
+    <p style="font-size:15px;color:#9fc0db;margin-bottom:40px;line-height:1.7;">Conecte sua marca à maior reunião da indústria farmacêutica brasileira. Conheça os níveis de cota disponíveis:</p>
+
+    <!-- COTAS DE PATROCÍNIO -->
+    <!-- EDITÁVEL: troque cada bloco "Logo" por <img src="logo_patrocinador.png" style="max-width:100%;max-height:100%;object-fit:contain;filter:brightness(0) invert(1);opacity:0.85;"> -->
+    <div style="display:flex;flex-direction:column;gap:24px;margin-bottom:64px;">
+
+      <!-- Diamante -->
+      <div style="background:#0a1428;border:1px solid #1e3a5f;border-radius:16px;padding:26px 30px;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;width:4px;height:100%;background:linear-gradient(180deg,#5fffd8,#00e5c0);"></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:20px;">
+          <div style="display:flex;align-items:baseline;gap:14px;">
+            <span style="font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:#00e5c0;letter-spacing:0.01em;">Diamante</span>
+            <span style="font-size:12px;color:#7eb8d4;">Cota máxima · destaque principal da feira</span>
+          </div>
+          <span style="font-size:11px;font-weight:600;color:#00e5c0;background:rgba(0,229,192,0.08);border:1px solid rgba(0,229,192,0.3);padding:4px 12px;border-radius:99px;">até 2 marcas</span>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:18px;">
+          <div style="width:230px;height:78px;border:1px dashed #2a4868;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:11px;color:#3a5a7a;font-family:'Space Grotesk',monospace;">Logo Diamante 1</div>
+          <div style="width:230px;height:78px;border:1px dashed #2a4868;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:11px;color:#3a5a7a;font-family:'Space Grotesk',monospace;">Logo Diamante 2</div>
+        </div>
+      </div>
+
+      <!-- Ouro -->
+      <div style="background:#0a1428;border:1px solid #1e3a5f;border-radius:16px;padding:26px 30px;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;width:4px;height:100%;background:linear-gradient(180deg,#ffd97a,#fbbf24);"></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:20px;">
+          <div style="display:flex;align-items:baseline;gap:14px;">
+            <span style="font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:#fbbf24;letter-spacing:0.01em;">Ouro</span>
+            <span style="font-size:12px;color:#7eb8d4;">Presença de destaque em áreas-chave</span>
+          </div>
+          <span style="font-size:11px;font-weight:600;color:#fbbf24;background:rgba(251,191,36,0.08);border:1px solid rgba(251,191,36,0.3);padding:4px 12px;border-radius:99px;">até 4 marcas</span>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:16px;">
+          <div style="width:180px;height:64px;border:1px dashed #2a4868;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#3a5a7a;font-family:'Space Grotesk',monospace;">Logo Ouro 1</div>
+          <div style="width:180px;height:64px;border:1px dashed #2a4868;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#3a5a7a;font-family:'Space Grotesk',monospace;">Logo Ouro 2</div>
+          <div style="width:180px;height:64px;border:1px dashed #2a4868;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#3a5a7a;font-family:'Space Grotesk',monospace;">Logo Ouro 3</div>
+        </div>
+      </div>
+
+      <!-- Prata -->
+      <div style="background:#0a1428;border:1px solid #1e3a5f;border-radius:16px;padding:26px 30px;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;width:4px;height:100%;background:linear-gradient(180deg,#dfe9f2,#9fb3c8);"></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:20px;">
+          <div style="display:flex;align-items:baseline;gap:14px;">
+            <span style="font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:#c9d6e3;letter-spacing:0.01em;">Prata</span>
+            <span style="font-size:12px;color:#7eb8d4;">Marca presente na comunicação do evento</span>
+          </div>
+          <span style="font-size:11px;font-weight:600;color:#c9d6e3;background:rgba(201,214,227,0.06);border:1px solid rgba(201,214,227,0.25);padding:4px 12px;border-radius:99px;">demais cotas</span>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:14px;">
+          <div style="width:140px;height:52px;border:1px dashed #2a4868;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#3a5a7a;font-family:'Space Grotesk',monospace;">Logo Prata 1</div>
+          <div style="width:140px;height:52px;border:1px dashed #2a4868;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#3a5a7a;font-family:'Space Grotesk',monospace;">Logo Prata 2</div>
+          <div style="width:140px;height:52px;border:1px dashed #2a4868;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#3a5a7a;font-family:'Space Grotesk',monospace;">Logo Prata 3</div>
+          <div style="width:140px;height:52px;border:1px dashed #2a4868;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#3a5a7a;font-family:'Space Grotesk',monospace;">Logo Prata 4</div>
+          <div style="width:140px;height:52px;border:1px dashed #2a4868;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#3a5a7a;font-family:'Space Grotesk',monospace;">Logo Prata 5</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ESTANDES — estilo cadeiras de cinema -->
+    <div style="margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+      <div>
+        <h3 style="font-size:28px;font-weight:700;color:#fff;margin-bottom:4px;letter-spacing:-0.02em;">Estandes disponíveis</h3>
+        <p style="font-size:12px;color:#7eb8d4;">Cada quadrado representa um estande · <span style="color:#00e5c0;">■</span> Vendido &nbsp; <span style="color:#1e3a5f;">■</span> Disponível</p>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:28px;font-weight:700;color:#00e5c0;line-height:1;"><span id="estandes-vendidos">0</span> <span style="font-size:13px;color:#7eb8d4;font-weight:400;">/ 75 estandes</span></div>
+        <div style="font-size:11px;color:#7eb8d4;">vendidos até o momento</div>
+      </div>
+    </div>
+
+    <!-- Cinema seats grid -->
+    <div id="estandes-grid" style="background:#0a1428;border:1px solid #1e3a5f;border-radius:14px;padding:24px 28px;">
+      <!-- Generated by JS -->
+    </div>
+
+    <div style="margin-top:16px;display:flex;gap:24px;flex-wrap:wrap;">
+      <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:#7eb8d4;"><div style="width:14px;height:14px;border-radius:3px;background:#00e5c0;"></div> Vendido</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:#7eb8d4;"><div style="width:14px;height:14px;border-radius:3px;background:#1e3a5f;border:1px solid #2a5a8a;"></div> Disponível</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ EQUIPE ══ -->
+<section id="equipe" style="padding:104px 48px;background:#0a1428;border-top:1px solid #1e3a5f;">
+  <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;">
+
+    <div style="position:relative;border-radius:16px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.4);min-height:320px;background:linear-gradient(135deg,#0d2e1f,#0a1428);">
+      <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#3a5a7a;font-family:'Space Grotesk',monospace;font-size:12px;letter-spacing:0.08em;text-align:center;padding:24px;background-image:repeating-linear-gradient(45deg,rgba(255,255,255,0.02) 0 12px,transparent 12px 24px);">
+        <div style="width:44px;height:44px;border-radius:12px;border:1.5px solid #1e3a5f;display:flex;align-items:center;justify-content:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#3a5a7a" stroke-width="1.6"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7" stroke="#3a5a7a" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+        FOTO DA EQUIPE
+      </div>
+      <img src="imagem_equipe.jpg" alt="Equipe de curadoria Sindusfarma" style="position:relative;width:100%;height:auto;display:block;" onerror="this.style.display='none'">
+      <div style="position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(125deg,rgba(0,229,192,0.14) 0%,rgba(0,229,192,0) 42%,rgba(13,27,62,0.45) 100%);"></div>
+    </div>
+
+    <div>
+      <div style="font-size:13px;font-weight:700;letter-spacing:0.2em;color:#00e5c0;text-transform:uppercase;margin-bottom:14px;">Nossa equipe</div>
+      <h2 style="font-size:42px;font-weight:700;color:#fff;line-height:1.18;margin-bottom:24px;letter-spacing:-0.025em;">Inteligência de Mercado &amp; Business Support</h2>
+      <div style="width:40px;height:3px;background:#00e5c0;border-radius:2px;margin-bottom:28px;"></div>
+      <p style="font-size:15px;color:#c0d8f0;line-height:1.9;font-style:italic;border-left:3px solid #00e5c0;padding-left:20px;">
+        "A curadoria da Feira Sindusfarma Brasil foi realizada pela equipe de Inteligência de Mercado e Business Support do Sindusfarma, com dedicação, expertise e um olhar estratégico voltado para a inovação."
+      </p>
+      <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap;">
+        <span style="display:inline-flex;align-items:center;gap:6px;background:rgba(0,229,192,0.1);border:1px solid rgba(0,229,192,0.3);color:#00e5c0;font-size:11px;font-weight:700;padding:5px 14px;border-radius:99px;">📊 Inteligência de Mercado</span>
+        <span style="display:inline-flex;align-items:center;gap:6px;background:rgba(77,166,255,0.1);border:1px solid rgba(77,166,255,0.3);color:#4da6ff;font-size:11px;font-weight:700;padding:5px 14px;border-radius:99px;">🤝 Business Support</span>
+        <span style="display:inline-flex;align-items:center;gap:6px;background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.3);color:#a78bfa;font-size:11px;font-weight:700;padding:5px 14px;border-radius:99px;">🏭 Sindusfarma</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="page-footer">
+  <div class="footer-text"><strong>Feira Sindusfarma Brasil 2027</strong><br>Espaço · 19 e 20 de maio de 2027 · São Paulo, SP</div>
+  <div class="footer-text" style="text-align:right;">Realização: <strong>Sindusfarma</strong><br><span style="font-size:10px;opacity:0.55;letter-spacing:0.04em;">Página feita por IA</span></div>
+</footer>
+
+<script>
+/* ESTANDES CINEMA SEATS */
+(function(){
+  var total = 75, vendidos = 0; // ← altere só aqui
+
+  var el = document.getElementById('estandes-vendidos');
+  if (el) el.textContent = vendidos;
+
+  var grid = document.getElementById('estandes-grid');
+  if (!grid) return;
+  var html = '<div style="display:flex;flex-wrap:wrap;gap:7px;">';
+  for (var i = 0; i < total; i++) {
+    var sold = i < vendidos;
+    var title = sold ? 'Estande '+(i+1)+' — Vendido' : 'Estande '+(i+1)+' — Disponível';
+    html += '<div title="'+title+'" style="width:30px;height:26px;border-radius:5px 5px 7px 7px;cursor:default;transition:transform 0.18s;background:'+(sold?'#00e5c0':'#15263f')+';border:1px solid '+(sold?'#00c4a8':'#2a5a8a')+';position:relative;'+(sold?'box-shadow:0 0 12px rgba(0,229,192,0.35);':'')+'" onmouseover="this.style.transform=\'scale(1.22)\'" onmouseout="this.style.transform=\'scale(1)\'">'
+      + '<div style="position:absolute;bottom:0;left:0;right:0;height:4px;border-radius:0 0 4px 4px;background:'+(sold?'rgba(0,0,0,0.2)':'rgba(0,0,0,0.3)')+';"></div>'
+      + '</div>';
+  }
+  html += '</div>';
+  grid.innerHTML = html;
+})();
+
+/* COUNTDOWN TOGGLE */
+function toggleCountdown(){
+  var wrap=document.getElementById('inicio');
+  var btn=document.getElementById('cdToggle');
+  wrap.classList.toggle('collapsed');
+  btn.textContent=wrap.classList.contains('collapsed')?'▼ Expandir contagem':'▲ Recolher contagem';
+}
+
+/* AGENT TOGGLE */
+function toggleAgent(id) {
+  var el = document.getElementById(id);
+  var isOpen = el.style.display !== 'none';
+  ['a1','a2','a3','a4'].forEach(function(a){document.getElementById(a).style.display='none';});
+  if (!isOpen) el.style.display = 'block';
+}
+
+/* GANTT PHASE TOGGLE */
+function togglePhase(id) {
+  var d = document.getElementById(id);
+  if (!d) return;
+  var open = d.style.display !== 'none';
+  var chev = document.getElementById('chev-' + id);
+  d.style.display = open ? 'none' : 'block';
+  if (chev) chev.style.transform = open ? 'rotate(0deg)' : 'rotate(90deg)';
+}
+
+/* PARTICLES */
+window.addEventListener('load', function() {
+  var canvas = document.getElementById('particleCanvas');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var W = canvas.offsetWidth, H = 140;
+  canvas.width = W; canvas.height = H;
+  var colors = ['#00e5c0','#4da6ff','#a78bfa','#fbbf24'];
+  var particles = [];
+  for (var i = 0; i < 28; i++) {
+    particles.push({x:Math.random()*W, y:68+(Math.random()-0.5)*10, r:Math.random()*2.5+1, speed:Math.random()*1.2+0.4, color:colors[Math.floor(Math.random()*colors.length)], alpha:Math.random()*0.7+0.3});
+  }
+  function animate() {
+    ctx.clearRect(0,0,W,H);
+    particles.forEach(function(p){
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=p.color; ctx.globalAlpha=p.alpha; ctx.fill(); ctx.globalAlpha=1;
+      p.x+=p.speed; if(p.x>W+5) p.x=-5;
+    });
+    requestAnimationFrame(animate);
+  }
+  animate();
+});
+
+/* COUNTDOWN with flip */
+var feiraDt=new Date('2027-05-19T09:00:00');
+var prevVals = {dias:'', horas:'', min:'', seg:''};
+function setFlip(id, val) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  var span = el.querySelector('.cd-flip');
+  if (span.textContent !== val) {
+    span.classList.remove('flipping');
+    void span.offsetWidth; // reflow
+    span.classList.add('flipping');
+    span.textContent = val;
+  }
+}
+function tickCountdown(){
+  var now=new Date(), diff=feiraDt-now;
+  if(diff<=0){['cd-dias','cd-horas','cd-min','cd-seg'].forEach(function(id){setFlip(id,'00');});return;}
+  var d=Math.floor(diff/86400000),h=Math.floor((diff%86400000)/3600000),m=Math.floor((diff%3600000)/60000),s=Math.floor((diff%60000)/1000);
+  setFlip('cd-dias',  String(d).padStart(3,'0'));
+  setFlip('cd-horas', String(h).padStart(2,'0'));
+  setFlip('cd-min',   String(m).padStart(2,'0'));
+  setFlip('cd-seg',   String(s).padStart(2,'0'));
+}
+tickCountdown(); setInterval(tickCountdown,1000);
+
+/* SCROLL REVEAL */
+window.addEventListener('load', function() {
+
+  // --- 1. SCROLL REVEAL ---
+  var revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .pilar-card, .section-fade');
+  var revealObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        revealObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  revealEls.forEach(function(el) { revealObs.observe(el); });
+
+  // --- 2. PROGRESS BAR ---
+  var progFill = document.getElementById('prog-fill');
+  if (progFill) {
+    var progObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          setTimeout(function() {
+            progFill.style.transition = 'width 1.6s cubic-bezier(0.4,0,0.2,1)';
+            progFill.style.width = gradeProgress().pct + '%';
+          }, 300);
+          var pn = document.getElementById('prog-num');
+          if (pn) animateCount(pn, gradeProgress().conf, '', '');
+          progObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    progObs.observe(progFill.parentElement);
+  }
+
+  // --- 3. NUMBER COUNTER for indicators ---
+  function animateCount(el, target, prefix, suffix) {
+    var start = Date.now(), dur = 1600;
+    var timer = setInterval(function() {
+      var p = Math.min((Date.now() - start) / dur, 1);
+      var ease = 1 - Math.pow(1 - p, 3);
+      el.textContent = prefix + Math.floor(ease * target).toLocaleString('pt-BR') + suffix;
+      if (p >= 1) { clearInterval(timer); el.textContent = prefix + target.toLocaleString('pt-BR') + suffix; }
+    }, 16);
+  }
+  var indNums = document.querySelectorAll('.ind-num');
+  var indTargets = [
+    { val: 30,   pre: '+', suf: '' },
+    { val: 6,    pre: '',  suf: '' },
+    { val: 3,    pre: '',  suf: '' },
+    { val: 120,  pre: '+', suf: '' },
+    { val: 4000, pre: '+', suf: '' }
+  ];
+  var indDone = false;
+  var indWrap = document.querySelector('.indicators-wrap');
+  if (indWrap) {
+    var indObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting && !indDone) {
+          indDone = true;
+          indNums.forEach(function(el, i) {
+            if (indTargets[i]) {
+              setTimeout(function() {
+                animateCount(el, indTargets[i].val, indTargets[i].pre, indTargets[i].suf);
+              }, i * 250);
+            }
+          });
+          indObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    indObs.observe(indWrap);
+  }
+
+  // --- 4. ESTANDES SEQUENTIAL FILL ---
+  var eGrid = document.getElementById('estandes-grid');
+  if (eGrid) {
+    var eObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          var seats = e.target.querySelectorAll('div[title]');
+          var delay = 0;
+          seats.forEach(function(seat) {
+            if (seat.title.includes('Vendido')) {
+              seat.style.background = '#1e3a5f';
+              seat.style.borderColor = '#2a5a8a';
+              setTimeout(function() {
+                seat.style.transition = 'background 0.2s, transform 0.2s';
+                seat.style.background = '#00e5c0';
+                seat.style.borderColor = '#00c4a8';
+                seat.style.transform = 'scale(1.2)';
+                setTimeout(function() { seat.style.transform = 'scale(1)'; }, 150);
+              }, delay);
+              delay += 35;
+            }
+          });
+          eObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    eObs.observe(eGrid);
+  }
+
+  // --- 5. DATA LAKE SVG DRAW ---
+  var dlContainer = document.querySelector('.dl-center-icon');
+  if (dlContainer) {
+    var dlObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          var paths = e.target.querySelectorAll('path');
+          paths.forEach(function(p, i) {
+            var len = 200;
+            p.style.strokeDasharray = len;
+            p.style.strokeDashoffset = len;
+            p.style.transition = 'stroke-dashoffset 0.9s ease ' + (i * 0.3) + 's';
+            setTimeout(function() { p.style.strokeDashoffset = '0'; }, 50);
+          });
+          dlObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    dlObs.observe(dlContainer);
+  }
+
+  // --- 6. GANTT ROWS SLIDE IN ---
+  var ganttRows = document.querySelectorAll('.gantt-row');
+  ganttRows.forEach(function(row, i) {
+    row.style.opacity = '0';
+    row.style.transform = 'translateX(-20px)';
+    row.style.transition = 'opacity 0.5s ease ' + (i * 0.08) + 's, transform 0.5s ease ' + (i * 0.08) + 's';
+  });
+  var ganttObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        ganttRows.forEach(function(row) {
+          row.style.opacity = '1';
+          row.style.transform = 'translateX(0)';
+        });
+        ganttObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  if (ganttRows[0]) ganttObs.observe(ganttRows[0].closest('div'));
+
+});
+
+
+
+
+/* INDICATORS */
+var indCurrent=0,indTotal=5,indAuto;
+(function(){
+  var dots=document.getElementById('indDots');
+  for(var i=0;i<indTotal;i++){
+    var d=document.createElement('button');
+    d.className='ind-dot'+(i===0?' active':'');
+    d.setAttribute('data-i',i);
+    d.onclick=function(){indGoto(+this.getAttribute('data-i'));};
+    dots.appendChild(d);
+  }
+  startAuto();
+})();
+function indGoto(i){
+  indCurrent=(i+indTotal)%indTotal;
+  document.getElementById('indTrack').style.transform='translateX(-'+(indCurrent*100)+'%)';
+  document.querySelectorAll('.ind-dot').forEach(function(d,j){d.classList.toggle('active',j===indCurrent);});
+  document.getElementById('indCounter').textContent=(indCurrent+1)+' / '+indTotal;
+}
+function indGo(dir){clearInterval(indAuto);indGoto(indCurrent+dir);startAuto();}
+function startAuto(){indAuto=setInterval(function(){indGoto(indCurrent+1);},5000);}
+
+/* MODAL */
+function openModal(t,img){document.getElementById('modal-title').textContent=t;document.getElementById('modal-img').src=img;document.getElementById('modal').classList.add('open');document.body.style.overflow='hidden';}
+function closeModalDirect(){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';}
+function closeModal(e){if(e.target===document.getElementById('modal'))closeModalDirect();}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModalDirect();});
+
+/* PROGRAMAÇÃO */
+var progState = { dia: 1, sala: 'plenaria', tipo: 'todos' };
+
+// Grade structure
+var grade = {
+  plenaria: {
+    slots: 8, start: '09:00', duration: 50, intervalo: 10,
+    dia1: [
+      { hora:'09:00', titulo:'Abertura Oficial',                                                                              tipo:'palestra', confirmado:true  },
+      { hora:'09:30', titulo:'Pilar Liderança',                                                                               tipo:'palestra', confirmado:true  },
+      { hora:'10:30', titulo:'Quando Pessoas e Dados se Encontram: O que está movendo a evolução da gestão de pessoas no Brasil', tipo:'mesa',     confirmado:true  },
+      { hora:'11:30', titulo:'Pilar Pesquisa Clínica',                                                                        tipo:'palestra', confirmado:true  },
+      { hora:'12:30', titulo:'RH Estratégico é bom para o negócio, não para o RH',                                            tipo:'palestra', confirmado:true  },
+      { hora:'14:30', titulo:'Pilar Fábrica',                                                                                 tipo:'palestra', confirmado:true  },
+      { hora:'15:30', titulo:'Pilar Força de Vendas',                                                                         tipo:'palestra', confirmado:true  }
+    ],
+    dia2: [
+      { hora:'09:00', titulo:'Conexões Humanas em tempos digitais',                                                            tipo:'palestra', confirmado:true  },
+      { hora:'10:00', titulo:'Pilar Pesquisa Clínica',                                                                        tipo:'palestra', confirmado:true  },
+      { hora:'11:00', titulo:'Desafios reais do RH no presente: aprendizados sobre qualidade de vida no trabalho',             tipo:'palestra', confirmado:true  },
+      { hora:'12:00', titulo:'Pilar Liderança',                                                                               tipo:'palestra', confirmado:true  },
+      { hora:'13:00', titulo:'Resultados x Humanos: um DR com base neurociência?',                                            tipo:'palestra', confirmado:true  },
+      { hora:'14:00', titulo:'Pilar Financeiro',                                                                              tipo:'palestra', confirmado:true  },
+      { hora:'15:00', titulo:'Pilar Fábrica',                                                                                 tipo:'palestra', confirmado:true  },
+      { hora:'16:00', titulo:'A ser definido',                                                                                tipo:'palestra', confirmado:false }
+    ]
+  },
+  sala1: {
+    slots: 10, start: '10:00', duration: 30, intervalo: 10,
+    dia1: [
+      { hora:'10:00', titulo:'Pilar Pesquisa Clínica',                                                                        tipo:'palestra', confirmado:true  },
+      { hora:'10:40', titulo:'Pilar Liderança',                                                                               tipo:'palestra', confirmado:true  },
+      { hora:'11:20', titulo:'Pilar RH: DP Preditivo: como transformar dados operacionais em decisões de negócio',             tipo:'mesa',     confirmado:true  },
+      { hora:'12:00', titulo:'Pilar Fábrica',                                                                                 tipo:'mesa',     confirmado:true  },
+      { hora:'12:40', titulo:'Pilar Liderança',                                                                               tipo:'mesa',     confirmado:true  },
+      { hora:'13:20', titulo:'Pilar Força de Vendas',                                                                         tipo:'palestra', confirmado:true  },
+      { hora:'14:00', titulo:'Pilar RH',                                                                                      tipo:'palestra', confirmado:true  },
+      { hora:'14:40', titulo:'Pesquisa Clínica',                                                                              tipo:'mesa',     confirmado:true  },
+      { hora:'15:20', titulo:'A ser definido',                                                                                tipo:'palestra', confirmado:false },
+      { hora:'16:00', titulo:'A ser definido',                                                                                tipo:'mesa',     confirmado:false }
+    ],
+    dia2: [
+      { hora:'10:00', titulo:'Pilar Pesquisa Clínica',                                                                        tipo:'palestra', confirmado:true  },
+      { hora:'10:40', titulo:'Pilar Liderança',                                                                               tipo:'palestra', confirmado:true  },
+      { hora:'11:20', titulo:'Pilar RH: DP Preditivo: como transformar dados operacionais em decisões de negócio',             tipo:'mesa',     confirmado:true  },
+      { hora:'12:00', titulo:'A ser definido',                                                                                tipo:'palestra', confirmado:false },
+      { hora:'12:40', titulo:'A ser definido',                                                                                tipo:'palestra', confirmado:false },
+      { hora:'13:20', titulo:'Pilar Fábrica',                                                                                 tipo:'mesa',     confirmado:true  },
+      { hora:'14:00', titulo:'Pilar Liderança',                                                                               tipo:'mesa',     confirmado:true  },
+      { hora:'14:40', titulo:'Pilar Força de Vendas',                                                                         tipo:'palestra', confirmado:true  },
+      { hora:'15:20', titulo:'Pilar RH',                                                                                      tipo:'palestra', confirmado:true  },
+      { hora:'16:00', titulo:'Pesquisa Clínica',                                                                              tipo:'mesa',     confirmado:true  }
+    ]
+  },
+  sala2: {
+    slots: 10, start: '10:00', duration: 30, intervalo: 10,
+    dia1: [
+      { hora:'10:00', titulo:'Pilar RH',                                                                                      tipo:'mesa',     confirmado:true  },
+      { hora:'10:40', titulo:'Pilar Força de Vendas',                                                                         tipo:'mesa',     confirmado:true  },
+      { hora:'11:20', titulo:'Pilar Liderança',                                                                               tipo:'palestra', confirmado:true  },
+      { hora:'12:00', titulo:'Pilar Pesquisa Clínica',                                                                        tipo:'mesa',     confirmado:true  },
+      { hora:'12:40', titulo:'Pilar Fábrica',                                                                                 tipo:'mesa',     confirmado:true  },
+      { hora:'13:20', titulo:'Pilar Financeiro',                                                                              tipo:'mesa',     confirmado:true  },
+      { hora:'14:00', titulo:'Pilar Liderança',                                                                               tipo:'mesa',     confirmado:true  },
+      { hora:'14:40', titulo:'Pilar Força de Vendas',                                                                         tipo:'palestra', confirmado:true  },
+      { hora:'15:20', titulo:'A ser definido',                                                                                tipo:'palestra', confirmado:false },
+      { hora:'16:00', titulo:'A ser definido',                                                                                tipo:'mesa',     confirmado:false }
+    ],
+    dia2: [
+      { hora:'10:00', titulo:'Desafios reais do RH no presente: aprendizados sobre qualidade de vida no trabalho',             tipo:'mesa',     confirmado:true  },
+      { hora:'10:40', titulo:'Pilar Força de Vendas',                                                                         tipo:'mesa',     confirmado:true  },
+      { hora:'11:20', titulo:'Pilar Liderança',                                                                               tipo:'mesa',     confirmado:true  },
+      { hora:'12:00', titulo:'A ser definido',                                                                                tipo:'mesa',     confirmado:false },
+      { hora:'13:20', titulo:'Pesquisa Clínica',                                                                              tipo:'mesa',     confirmado:true  },
+      { hora:'14:00', titulo:'DP Inteligente, RH Eficiente: Tecnologia, Inteligência e Erro Zero',                            tipo:'mesa',     confirmado:true  },
+      { hora:'14:40', titulo:'Pilar Financeiro',                                                                              tipo:'mesa',     confirmado:true  },
+      { hora:'15:20', titulo:'Pilar Liderança',                                                                               tipo:'mesa',     confirmado:true  },
+      { hora:'16:00', titulo:'Pilar Força de Vendas',                                                                         tipo:'mesa',     confirmado:true  }
+    ]
+  }
+};
+
+var tipoColors = {
+  palestra:  { bg:'rgba(77,166,255,0.12)',  border:'#4da6ff',  label:'Palestra',        text:'#4da6ff'  },
+  mesa:      { bg:'rgba(167,139,250,0.12)', border:'#a78bfa',  label:'Mesa redonda',    text:'#a78bfa'  },
+  negocios:  { bg:'rgba(251,191,36,0.12)',  border:'#fbbf24',  label:'Roda de negócios',text:'#fbbf24'  }
+};
+
+var salaColors = { plenaria:'#4da6ff', sala1:'#a78bfa', sala2:'#00e5c0' };
+
+// Slots de "Pilar ..." e "A ser definido" contam como A DEFINIR (não são palestras confirmadas)
+function isUndefSlot(p) {
+  return p.titulo === 'A ser definido' || /^pilar\b/i.test(p.titulo.trim());
+}
+function gradeProgress() {
+  var conf = 0, META = 56;
+  ['plenaria','sala1','sala2'].forEach(function(s){
+    ['dia1','dia2'].forEach(function(dk){
+      (grade[s][dk] || []).forEach(function(p){ if(!isUndefSlot(p)) conf++; });
+    });
+  });
+  return { conf: conf, meta: META, pct: Math.round(conf/META*1000)/10 };
+}
+function updateProgressUI() {
+  var gp = gradeProgress();
+  var n = document.getElementById('prog-num'); if(n) n.textContent = gp.conf;
+  var d = document.getElementById('prog-den'); if(d) d.textContent = '/ ' + gp.meta;
+  var p = document.getElementById('prog-pct'); if(p) p.textContent = String(gp.pct).replace('.',',') + '% concluído';
+}
+function buildProgSummary() {
+  var el = document.getElementById('prog-summary');
+  if (!el) return;
+  var counts = { palestra:0, mesa:0, negocios:0 };
+  ['plenaria','sala1','sala2'].forEach(function(s){
+    ['dia1','dia2'].forEach(function(dk){
+      (grade[s][dk] || []).forEach(function(p){
+        if (!isUndefSlot(p) && counts.hasOwnProperty(p.tipo)) counts[p.tipo]++;
+      });
+    });
+  });
+  var items = [
+    { n: counts.palestra + counts.mesa + counts.negocios, lbl: 'palestras confirmadas', c:'#00e5c0' },
+    { n: counts.palestra, lbl: 'palestras', c:'#4da6ff' },
+    { n: counts.mesa, lbl: 'mesas redondas', c:'#a78bfa' },
+    { n: counts.negocios, lbl: 'rodas de negócio', c:'#fbbf24' }
+  ];
+  el.innerHTML = items.map(function(it){
+    return '<div style="display:flex;align-items:center;gap:10px;padding:12px 18px;background:#0a1428;border:1px solid #1e3a5f;border-radius:12px;">'
+      + '<div style="font-family:\'Space Grotesk\',sans-serif;font-size:26px;font-weight:700;color:'+it.c+';line-height:1;font-variant-numeric:tabular-nums;">'+it.n+'</div>'
+      + '<div style="font-size:12px;color:#9fc0db;line-height:1.25;max-width:90px;">'+it.lbl+'</div>'
+      + '</div>';
+  }).join('');
+}
+
+function selectDia(d) {
+  progState.dia = d;
+  document.getElementById('btn-dia1').style.background = d===1 ? '#00e5c0' : 'transparent';
+  document.getElementById('btn-dia1').style.color      = d===1 ? '#0d1b3e' : '#7eb8d4';
+  document.getElementById('btn-dia1').style.borderColor= d===1 ? '#00e5c0' : '#1e3a5f';
+  document.getElementById('btn-dia2').style.background = d===2 ? '#00e5c0' : 'transparent';
+  document.getElementById('btn-dia2').style.color      = d===2 ? '#0d1b3e' : '#7eb8d4';
+  document.getElementById('btn-dia2').style.borderColor= d===2 ? '#00e5c0' : '#1e3a5f';
+  renderGrade();
+}
+
+function selectSala(s) {
+  progState.sala = s;
+  var salas = ['plenaria','sala1','sala2'];
+  salas.forEach(function(id) {
+    var btn = document.getElementById('btn-'+id);
+    var active = id === s;
+    btn.style.background   = active ? salaColors[id] : '#0a1428';
+    btn.style.color        = active ? '#0d1b3e' : '#7eb8d4';
+    btn.style.borderColor  = active ? salaColors[id] : '#1e3a5f';
+    btn.style.border       = active ? 'none' : '2px solid #1e3a5f';
+  });
+
+  // Plenária não esconde mais os filtros de tipo
+  document.getElementById('btn-mesa').style.display     = 'inline-block';
+  document.getElementById('btn-negocios').style.display = 'inline-block';
+
+  renderGrade();
+}
+
+function selectTipo(t) {
+  progState.tipo = t;
+  var tipos = ['todos','palestra','mesa','negocios'];
+  tipos.forEach(function(id) {
+    var btn = document.getElementById('btn-'+id);
+    var active = id === t;
+    btn.style.background = active ? '#00e5c0' : 'transparent';
+    btn.style.color      = active ? '#0d1b3e' : '#7eb8d4';
+    btn.style.border     = active ? 'none' : '1px solid #1e3a5f';
+  });
+  renderGrade();
+}
+
+function renderGrade() {
+  var container = document.getElementById('grade-container');
+  var salaData  = grade[progState.sala];
+  var palestras = salaData['dia'+progState.dia] || [];
+  var diaLabel  = progState.dia === 1 ? 'Dia 1 — 19 Mai' : 'Dia 2 — 20 Mai';
+  var salaLabel = { plenaria:'Plenária', sala1:'Sala 1', sala2:'Sala 2' }[progState.sala];
+  var cor       = salaColors[progState.sala];
+
+  var html = '<div style="padding:12px 16px;border-bottom:1px solid #1e3a5f;display:flex;align-items:center;justify-content:space-between;">'
+    + '<div style="font-size:12px;font-weight:700;color:'+cor+';">'+salaLabel+' · '+diaLabel+'</div>'
+    + '<div style="font-size:11px;color:#7eb8d4;">'+salaData.duration+'min palestra + '+salaData.intervalo+'min troca · '+salaData.slots+' slots</div>'
+    + '</div>';
+
+  var filtrados = palestras.filter(function(p) {
+    return progState.tipo === 'todos' || p.tipo === progState.tipo;
+  });
+
+  if (filtrados.length === 0) {
+    html += '<div style="padding:32px;text-align:center;color:#3a5a7a;font-size:13px;">Nenhuma palestra deste tipo nesta sala.</div>';
+  }
+
+  filtrados.forEach(function(p) {
+    var tc = tipoColors[p.tipo] || tipoColors.palestra;
+    var isEmpty = isUndefSlot(p);
+    html += '<div style="display:flex;align-items:center;border-bottom:1px solid rgba(255,255,255,0.04);padding:14px 18px;gap:16px;transition:background 0.2s,transform 0.2s;border-left:3px solid '+(isEmpty?'#15263f':tc.border)+';" onmouseover="this.style.background=\'rgba(255,255,255,0.03)\';this.style.transform=\'translateX(4px)\'" onmouseout="this.style.background=\'transparent\';this.style.transform=\'translateX(0)\'">'
+      + '<div style="width:58px;flex-shrink:0;text-align:center;background:'+cor+'1a;border-radius:9px;padding:8px 0;">'
+      +   '<div class="font-display" style="font-size:14px;font-weight:700;color:'+cor+';font-variant-numeric:tabular-nums;letter-spacing:-0.01em;">'+p.hora+'</div>'
+      + '</div>'
+      + '<div style="flex:1;">'
+      +   '<div style="font-size:14px;font-weight:'+(isEmpty?'400':'600')+';color:'+(isEmpty?'#3a5a7a':'#fff')+';font-style:'+(isEmpty?'italic':'normal')+';margin-bottom:6px;line-height:1.4;">'+p.titulo+'</div>'
+      +   '<div style="display:flex;gap:6px;align-items:center;">'
+      +     '<span style="font-size:10px;font-weight:600;padding:3px 9px;border-radius:99px;background:'+tc.bg+';color:'+tc.text+';border:1px solid '+tc.border+';">'+tc.label+'</span>'
+      +     (p.palestrante ? '<span style="font-size:10px;color:#7eb8d4;">'+p.palestrante+'</span>' : '')
+      +   '</div>'
+      + '</div>'
+    + '</div>';
+  });
+
+  if (!html.includes('display:flex;align-items:center;border-bottom')) {
+    html += '<div style="padding:32px;text-align:center;color:#3a5a7a;font-size:13px;">Nenhuma palestra deste tipo nesta sala ainda.</div>';
+  }
+
+  container.style.transition = 'opacity 0.28s ease';
+  container.style.opacity = '0';
+  container.innerHTML = html;
+  requestAnimationFrame(function(){ container.style.opacity = '1'; });
+}
+
+// Init
+renderGrade();
+updateProgressUI();
+
+
+function drawConnectors(){
+  var grid=document.getElementById('ctxGrid'),svg=document.getElementById('connSvg'),center=document.getElementById('dlCenter');
+  if(!grid||!svg||!center) return;
+  var ids=['ac','ef','fi','sp'],colors=['#00e5c0','#4da6ff','#a78bfa','#fbbf24'];
+  var gr=grid.getBoundingClientRect();
+  function mid(el){var r=el.getBoundingClientRect();return{x:r.left-gr.left+r.width/2,y:r.top-gr.top+r.height/2};}
+  function edge(from,to){
+    var f=from.getBoundingClientRect(),fl=f.left-gr.left,ft=f.top-gr.top,fw=f.width,fh=f.height,tm=mid(to);
+    var cx=fl+fw/2,cy=ft+fh/2,dx=tm.x-cx,dy=tm.y-cy,angle=Math.atan2(dy,dx);
+    var hw=fw/2+2,hh=fh/2+2,ex,ey;
+    if(Math.abs(dx/hw)>Math.abs(dy/hh)){ex=cx+(dx>0?hw:-hw);ey=cy+Math.tan(angle)*(dx>0?hw:-hw);}
+    else{ey=cy+(dy>0?hh:-hh);ex=cx+(dy>0?hh:-hh)/Math.tan(angle);}
+    return{x:ex,y:ey};
+  }
+  var cMid=mid(center);
+  var html='<defs>'+ids.map(function(id,i){return'<marker id="arr'+i+'" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M2 2L8 5L2 8" fill="none" stroke="'+colors[i]+'" stroke-width="1.5" stroke-linecap="round"/></marker>';}).join('')+'</defs>';
+  ids.forEach(function(id,i){
+    var el=document.getElementById(id),start=edge(el,center),end=edge(center,el);
+    var cx1=start.x+(cMid.x-start.x)*0.45,cy1=start.y+(cMid.y-start.y)*0.45;
+    html+='<path d="M'+start.x+','+start.y+' C'+cx1+','+cy1+' '+cx1+','+cy1+' '+end.x+','+end.y+'" stroke="'+colors[i]+'" stroke-width="1.4" stroke-dasharray="5 4" fill="none" marker-end="url(#arr'+i+')" opacity="0.7"/>';
+  });
+  svg.innerHTML=html;
+}
+window.addEventListener('load',drawConnectors);
+window.addEventListener('resize',drawConnectors);
+
+/* SCROLL-SPY NAV */
+(function(){
+  var ids=['sobre','curadoria','programacao','patrocinios','equipe'];
+  var links={};
+  document.querySelectorAll('.nav-links a').forEach(function(a){
+    var href=a.getAttribute('href');
+    if(href&&href.charAt(0)==='#') links[href.slice(1)]=a;
+  });
+  var spy=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        Object.keys(links).forEach(function(k){links[k].classList.remove('active');});
+        if(links[e.target.id]) links[e.target.id].classList.add('active');
+      }
+    });
+  },{rootMargin:'-45% 0px -50% 0px',threshold:0});
+  ids.forEach(function(id){var s=document.getElementById(id);if(s)spy.observe(s);});
+})();
+</script>
+</body>
+</html>
